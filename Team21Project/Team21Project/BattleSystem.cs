@@ -13,8 +13,8 @@
             {
                 monsters.Add(new Monster());
             }
-
-            while (true)
+            /*
+            while (killMonster != monsters.Count || player.IsDead)
             {
                 Console.Clear();
                 Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
@@ -26,8 +26,8 @@
                 Console.WriteLine("");
                 Console.WriteLine("");
                 Console.WriteLine("[내정보]");
-                //Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
-                //Console.WriteLine("HP {0} / {1}", player.MaxHelth, player.Helth);
+                Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
+                Console.WriteLine("HP {0} / {1}", player.MaxHelth, player.Helth);
                 Console.WriteLine("");
                 Console.WriteLine("1. 공격");
                 Console.WriteLine("");
@@ -37,7 +37,24 @@
                 {
                     case 1: NomalAttck(player, monsters); break;
                 }
+                for(int i = 0; i < monsters.Count; i++)
+                {
+                    if(!monsters[i].IsDead)
+                    {
+                        Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
+                        Console.WriteLine("");
+                        Console.WriteLine("Lv.{0} {1}의 공격!", monsters[i].Level, monsters[i].Name);
+                        player.HitDamage(monsters[i].Attack);
+                        Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
+                        Console.WriteLine("HP {0} -> {1}", player.MaxHelth, player.Helth);
+                        Console.WriteLine("");
+                        Console.WriteLine("0. 다음");
+                        Console.WriteLine("");
+                        answer = Console.ReadLine();
+                    }
+                }
             }
+            */
 
             BattleEnd(player, monsters);
         }
