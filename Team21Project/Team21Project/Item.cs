@@ -16,7 +16,8 @@
         ItemType ItemType { get; set; }
         bool IsEquipped { get; set; }
 
-        void Uesed(int Heal, Wrroior wrroior);
+        
+        void Uesed(int Heal, IPlayerCharacter character);
     }
 
     public class WrroiorItme : IItem
@@ -40,10 +41,10 @@
             IsEquipped = false;
         }
 
-        public void Uesed(int Heal, Wrroior wrroior)
+        public void Uesed(int Heal, IPlayerCharacter character)
         {
-            Console.WriteLine($"{wrroior.Name}의 체력이 회복 되었습니다. " +
-                $"{wrroior.Current_Health} -> {wrroior.Current_Health + Heal}");
+            Console.WriteLine($"{character.Name}의 체력이 회복 되었습니다. " +
+                $"{character.Current_Health} -> {character.Current_Health + Heal}");
         }
 
         public string GetItemInfo()
@@ -74,10 +75,10 @@
             IsEquipped = false;
         }
 
-        public void Uesed(int Heal, Wrroior wrroior)
+        public void Uesed(int Heal, IPlayerCharacter character)
         {
-            Console.WriteLine($"{wrroior.Name}의 체력이 회복 되었습니다. " +
-                $"{wrroior.Current_Health} -> {wrroior.Current_Health + Heal}");
+            Console.WriteLine($"{character.Name}의 체력이 회복 되었습니다. " +
+                $"{character.Current_Health} -> {character.Current_Health + Heal}");
         }
 
         public string GetItemInfo()
@@ -108,10 +109,10 @@
             IsEquipped = false;
         }
 
-        public void Uesed(int Heal, Wrroior wrroior)
+        public void Uesed(int Heal, IPlayerCharacter character)
         {
-            Console.WriteLine($"{wrroior.Name}의 체력이 회복 되었습니다. " +
-                $"{wrroior.Current_Health} -> {wrroior.Current_Health + Heal}");
+            Console.WriteLine($"{character.Name}의 체력이 회복 되었습니다. " +
+                $"{character.Current_Health} -> {character.Current_Health + Heal}");
         }
 
         public string GetItemInfo()
