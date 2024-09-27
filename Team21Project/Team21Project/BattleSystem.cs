@@ -3,7 +3,7 @@
     public class BattleSystem
     {
         public string answer;
-        public void BattleStart(PlayerCharacter player)
+        public void BattleStart(IPlayerCharacter player)
         {
             Random random = new Random();
             List<Monster> monsters = new List<Monster>();
@@ -59,7 +59,7 @@
             BattleEnd(player, monsters);
         }
 
-        public void BattleEnd(PlayerCharacter player, List<Monster> monsters)
+        public void BattleEnd(IPlayerCharacter player, List<Monster> monsters)
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result", ConsoleColor.DarkRed);
@@ -93,8 +93,9 @@
             */
         }
 
-        public void NomalAttck(PlayerCharacter player, List<Monster> monsters)
+        public void NomalAttck(IPlayerCharacter player, List<Monster> monsters)
         {
+            IPlayerCharacter player1 = new Wrroior("");
             Console.Clear();
             Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
             Console.WriteLine("");
