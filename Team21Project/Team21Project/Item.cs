@@ -18,6 +18,7 @@
 
         
         void Uesed(int Heal, IPlayerCharacter character);
+        string GetItemInfo();
     }
 
     public class WrroiorItme : IItem
