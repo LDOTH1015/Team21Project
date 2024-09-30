@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 
 namespace Team21Project
 {
-    internal class Inventory
+    public class Inventory
     {
         public List<IItem> Itmes { get; set; }
         public IItem EquippedWeapon { get; set; }
         public IItem EquippedArmor { get; set; }
+
+        public Inventory()
+        {
+            Itmes = new List<IItem>();
+        }
 
         public void ShowInven()
         {
