@@ -12,6 +12,7 @@ namespace Team21Project
         int Max_Health { get; set; }
         int Current_Health {  get; set; }
         int Gold { get; set; }
+        public Inventory Inventory { get; set; }
         void TakeDamage(int damge);
         public void ShowStatus();
     }
@@ -26,6 +27,8 @@ namespace Team21Project
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
         public int Gold { get; set; }
+        public Inventory Inventory { get; set; }
+
 
         public IItem EquippedWeapon { get; set; }
         public IItem EquippedArmor { get; set; }
@@ -39,6 +42,7 @@ namespace Team21Project
             Max_Health = 100;
             Current_Health = 100;
             Gold = 1500;
+            Inventory = new Inventory();
         }
 
         public void TakeDamage(int damage)
@@ -83,6 +87,7 @@ namespace Team21Project
         public int Gold { get; set; }
         public IItem EquippedWeapon { get; set; }
         public IItem EquippedArmor { get; set; }
+        public Inventory Inventory { get; set; }
 
         public Thief(string name)
         {
@@ -93,6 +98,7 @@ namespace Team21Project
             Max_Health = 100;
             Current_Health = 100;
             Gold = 1500;
+            Inventory = new Inventory();
         }
 
         public void TakeDamage(int damage)
@@ -137,6 +143,7 @@ namespace Team21Project
         public int Gold { get; set; }
         public IItem EquippedWeapon { get; set; }
         public IItem EquippedArmor { get; set; }
+        public Inventory Inventory { get; set; }
 
         public Archer(string name)
         {
@@ -147,6 +154,7 @@ namespace Team21Project
             Max_Health = 100;
             Current_Health = 100;
             Gold = 1500;
+            Inventory = new Inventory();
         }
 
         public void TakeDamage(int damage)
