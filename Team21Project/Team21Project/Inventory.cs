@@ -9,13 +9,13 @@ namespace Team21Project
 {
     public class Inventory
     {
-        public List<IItem> Itmes { get; set; }
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public List<Item> Itmes { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
 
         public Inventory()
         {
-            Itmes = new List<IItem>();
+            Itmes = new List<Item>();
         }
 
         public void ShowInven()
@@ -36,7 +36,7 @@ namespace Team21Project
         void EquippedItem(int itemIdx, IPlayerCharacter character)
         {
             //WrroiorItme items = wrroiorItmes[itemIdx];
-            IItem items = Itmes[itemIdx];
+            Item items = Itmes[itemIdx];
             if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon == null)
             {
                 character.Attack += items.AttackBouns;
