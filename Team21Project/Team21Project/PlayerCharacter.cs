@@ -35,6 +35,7 @@ namespace Team21Project
 
         public Wrroior(string name)
         {
+            Level = 1;
             Name = name;
             Job = "전사";
             Attack = 10;
@@ -91,6 +92,7 @@ namespace Team21Project
 
         public Thief(string name)
         {
+            Level = 1;
             Name = name;
             Job = "도적";
             Attack = 7;
@@ -147,6 +149,7 @@ namespace Team21Project
 
         public Archer(string name)
         {
+            Level = 1;
             Name = name;
             Job = "궁수";
             Attack = 8;
