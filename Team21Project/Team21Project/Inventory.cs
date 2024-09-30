@@ -9,22 +9,22 @@ namespace Team21Project
 {
     public class Inventory
     {
-        public List<IItem> Itmes { get; set; }
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public List<Item> Items { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
 
         public Inventory()
         {
-            Itmes = new List<IItem>();
+            Items = new List<Item>();
         }
 
         public void ShowInven()
         {
-            if (Itmes.Count > 0)
+            if (Items.Count > 0)
             {
-                for (int i = 0; i < Itmes.Count; i++)
+                for (int i = 0; i < Items.Count; i++)
                 {
-                    Console.WriteLine($"{Itmes[i].GetItemInfo()}");
+                    Console.WriteLine($"{Items[i].GetItemInfo()}");
                 }
             }
             else
@@ -36,7 +36,7 @@ namespace Team21Project
         void EquippedItem(int itemIdx, IPlayerCharacter character)
         {
             //WrroiorItme items = wrroiorItmes[itemIdx];
-            IItem items = Itmes[itemIdx];
+            Item items = Items[itemIdx];
             if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon == null)
             {
                 character.Attack += items.AttackBouns;
@@ -88,7 +88,7 @@ namespace Team21Project
                 {
                     case "1":
                         if (int.TryParse(Console.ReadLine(), out int equipIdx)
-                            && equipIdx >= 1 && equipIdx <= Itmes.Count)
+                            && equipIdx >= 1 && equipIdx <= Items.Count)
                         {
                             EquippedItem(equipIdx - 1, character);
                         }

@@ -30,11 +30,12 @@ namespace Team21Project
         public Inventory Inventory { get; set; }
 
 
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
 
         public Wrroior(string name)
         {
+            Level = 1;
             Name = name;
             Job = "전사";
             Attack = 10;
@@ -85,12 +86,13 @@ namespace Team21Project
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
         public int Gold { get; set; }
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
         public Inventory Inventory { get; set; }
 
         public Thief(string name)
         {
+            Level = 1;
             Name = name;
             Job = "도적";
             Attack = 7;
@@ -141,12 +143,13 @@ namespace Team21Project
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
         public int Gold { get; set; }
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
         public Inventory Inventory { get; set; }
 
         public Archer(string name)
         {
+            Level = 1;
             Name = name;
             Job = "궁수";
             Attack = 8;

@@ -7,6 +7,7 @@ namespace Team21Project
         // 플레이어생성
         static IPlayerCharacter player;
         static string playerName;
+        static Inventory inventory = new Inventory();//
         
         static void Main(string[] args)
         {
@@ -28,6 +29,7 @@ namespace Team21Project
             Console.Write(">>");
             playerName = Console.ReadLine();
             Console.WriteLine($"플레이어의 이름은 \"{playerName}\" 입니다");
+            Console.ReadLine();
         }
         /// <summary>
         /// 게임시작화면2 - 플레이어직업설정
@@ -40,17 +42,20 @@ namespace Team21Project
             Console.WriteLine("원하시는 직업을 선택해주세요.");
             Console.WriteLine("");
             Console.WriteLine($"1. 전사");
-            Console.WriteLine($"2. 궁수");
-            Console.WriteLine($"3. 도적");
+            Console.WriteLine($"2. 도적");
+            Console.WriteLine($"3. 궁수");
             Console.Write(">>");
-            string input = Console.ReadLine();
-            switch (int.Parse(input))
+
+            int result = CheckInput(1, 3);
+
+            switch (result)
             {
                 case 1: player = new Wrroior(playerName); break;
                 case 2: player = new Thief(playerName); break;
                 case 3: player = new Archer(playerName); break;
             }
             Console.WriteLine($"플레이어의 직업은 \"{player.Job}\" 입니다");
+            Console.ReadLine();
         }
         /// <summary>
         /// 게임메인화면
@@ -70,11 +75,11 @@ namespace Team21Project
             Console.WriteLine("4. 전투 시작");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
-            Console.Write(">>");            
-            string chooseNum = Console.ReadLine();
-            int Input = int.Parse(chooseNum);
+            Console.Write(">>");
 
-            switch (Input)
+            int result = CheckInput(1, 4);
+
+            switch (result)            
             {
                 case 1:
                     CharacterStatUI();
@@ -106,19 +111,19 @@ namespace Team21Project
             Console.WriteLine(" ");
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-            Console.WriteLine("");
-            Console.WriteLine($"");
+            Console.WriteLine("");            
+
             player.ShowStatus();
+
             Console.WriteLine($"");
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
-            Console.Write(">>");           
+            Console.Write(">>");
 
-            string chooseNum = Console.ReadLine();
-            int Input = int.Parse(chooseNum);
+            int result = CheckInput(0, 0);
 
-            switch (Input)
+            switch (result)
             {
                 case 0:
                     GameMainUI();
@@ -148,24 +153,24 @@ namespace Team21Project
             Console.WriteLine("■■■■■■■ INVENTORY ■■■■■■■");
             Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine(" ");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
+
+            inventory.ShowInven(); //
+
+            Console.WriteLine("\n1. 장착 관리"); //
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            string chooseNum = Console.ReadLine();
-            int Input = int.Parse(chooseNum);
+            int result = CheckInput(0, 1); //
 
-            switch (Input)
+            switch (result)
             {
                 case 0:
                     GameMainUI();
+                    break;
+                case 1:
+                    //inventory.ShowEquipped(); // 보류.
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다");
@@ -202,10 +207,9 @@ namespace Team21Project
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            string chooseNum = Console.ReadLine();
-            int Input = int.Parse(chooseNum);
+            int result = CheckInput(0, 1);
 
-            switch (Input)
+            switch (result)
             {
                 case 1:
                     ShopBuyUI();
@@ -244,10 +248,9 @@ namespace Team21Project
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            string chooseNum = Console.ReadLine();
-            int Input = int.Parse(chooseNum);
+            int result = CheckInput(0, 0);
 
-            switch (Input)
+            switch (result)
             {
                 case 0:
                     GameMainUI();
@@ -268,6 +271,24 @@ namespace Team21Project
             BattleSystem.BattleStart(player);
         }
 
+        /// <summary>
+        /// 사용자 입력값 받기
+        /// </summary>        
+        static int CheckInput(int min, int max)
+        {
+            int result;
+            while (true)
+            {
+                string input = Console.ReadLine();
+                bool isNum = int.TryParse(input, out result);
+                if (isNum)
+                {
+                    if (result >= min && result <= max)
+                        return result;                        
+                }
+                Console.WriteLine("잘못된 입력입니다");
+            }
+        }
 
     }
 }
