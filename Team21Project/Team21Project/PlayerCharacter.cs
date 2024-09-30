@@ -30,8 +30,8 @@ namespace Team21Project
         public Inventory Inventory { get; set; }
 
 
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
 
         public Wrroior(string name)
         {
@@ -85,8 +85,8 @@ namespace Team21Project
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
         public int Gold { get; set; }
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
         public Inventory Inventory { get; set; }
 
         public Thief(string name)
@@ -141,8 +141,8 @@ namespace Team21Project
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
         public int Gold { get; set; }
-        public IItem EquippedWeapon { get; set; }
-        public IItem EquippedArmor { get; set; }
+        public Item EquippedWeapon { get; set; }
+        public Item EquippedArmor { get; set; }
         public Inventory Inventory { get; set; }
 
         public Archer(string name)
