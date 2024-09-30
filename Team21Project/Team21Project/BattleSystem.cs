@@ -2,8 +2,8 @@
 {
     public class BattleSystem
     {
-        public string answer;
-        public void BattleStart(IPlayerCharacter player)
+        static string answer;
+        public static void BattleStart(IPlayerCharacter player)
         {
             Random random = new Random();
             List<Monster> monsters = new List<Monster>();
@@ -62,7 +62,7 @@
             BattleEnd(player, monsters);
         }
 
-        public void BattleEnd(IPlayerCharacter player, List<Monster> monsters)
+        public static void BattleEnd(IPlayerCharacter player, List<Monster> monsters)
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result", ConsoleColor.DarkRed);
@@ -94,15 +94,15 @@
             }
         }
 
-        public void NomalAttck(IPlayerCharacter player, List<Monster> monsters)
+        public static void NomalAttck(IPlayerCharacter player, List<Monster> monsters)
         {
             IPlayerCharacter player1 = new Wrroior("");
             Console.Clear();
             Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
             Console.WriteLine("");
-            for (int i = 1; i <= monsters.Count; i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
-                Console.WriteLine("{3} Lv.{0} {1} HP {2}", monsters[i].Level, monsters[i].Name, monsters[i].Hp, i);
+                Console.WriteLine("{0} Lv.{1} {2} HP {3}", i+1,monsters[i].Level, monsters[i].Name, monsters[i].Hp);
             }
             Console.WriteLine("");
             Console.WriteLine("");
@@ -116,7 +116,7 @@
             answer = Console.ReadLine();
             if (int.Parse(answer)>0 && int.Parse(answer) <= monsters.Count)
             {
-                if (!monsters[int.Parse(answer)].IsDead)
+                if (!monsters[int.Parse(answer)-1].IsDead)
                 {
                     monsters[int.Parse(answer)].TakeDamage(player.Attack);
                 } else
