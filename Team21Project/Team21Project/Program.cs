@@ -7,7 +7,7 @@ namespace Team21Project
         // 플레이어생성
         static IPlayerCharacter player;
         static string playerName;
-        static Inventory inventory;//
+        static Inventory inventory = new Inventory();//
         
         static void Main(string[] args)
         {
