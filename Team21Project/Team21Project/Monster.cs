@@ -20,6 +20,7 @@ namespace Team21Project
             Hp = hp;
             Attack = attack;
             Exp = exp;
+            IsDead = false;
         }
 
         public void AttackPlayer()

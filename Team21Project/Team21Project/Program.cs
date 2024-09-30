@@ -4,22 +4,15 @@ namespace Team21Project
 {
     internal partial class Program
     {
-        string Input = "";
-        Input = Console.ReadLine();      
         // 플레이어생성
-        static IPlayerCharacter player = new Wrroior(Input);
-        
-        // 직업별클래스 가져오기
-        static Wrroior wrrior = new Wrroior(player.Name);
-        static Thief thief = new Thief(player.Name); 
-        static Archer archer = new Archer(player.Name);
-        
-        //배틀시스템클래스가져오기
-        static BattleSystem battleSystem = new BattleSystem(); 
+        static IPlayerCharacter player;
+        static string playerName;
         
         static void Main(string[] args)
         {
             PlayerNameSettingUI();
+            PlayerJobSettingUI();
+            GameMainUI();
         }
 
         /// <summary>
@@ -33,10 +26,8 @@ namespace Team21Project
             Console.WriteLine("");
             Console.WriteLine("원하시는 이름을 설정해주세요.");
             Console.Write(">>");
-            string Input = Console.ReadLine();
-            player.Name = Input;
-            Console.WriteLine($"플레이어의 이름은 \"{player.Name}\" 입니다");
-            PlayerJobSettingUI();
+            playerName = Console.ReadLine();
+            Console.WriteLine($"플레이어의 이름은 \"{playerName}\" 입니다");
         }
         /// <summary>
         /// 게임시작화면2 - 플레이어직업설정
@@ -48,14 +39,18 @@ namespace Team21Project
             Console.WriteLine("");
             Console.WriteLine("원하시는 직업을 선택해주세요.");
             Console.WriteLine("");
-            Console.WriteLine($"1.{wrrior.Job}");
-            Console.WriteLine($"2.{thief.Job}");
-            Console.WriteLine($"3.{archer.Job}");
+            Console.WriteLine($"1. 전사");
+            Console.WriteLine($"2. 궁수");
+            Console.WriteLine($"3. 도적");
             Console.Write(">>");
-            string Input = Console.ReadLine();
-            player.Job = Input;
+            string input = Console.ReadLine();
+            switch (int.Parse(input))
+            {
+                case 1: player = new Wrroior(playerName); break;
+                case 2: player = new Thief(playerName); break;
+                case 3: player = new Archer(playerName); break;
+            }
             Console.WriteLine($"플레이어의 직업은 \"{player.Job}\" 입니다");
-            GameMainUI();
         }
         /// <summary>
         /// 게임메인화면
@@ -113,10 +108,7 @@ namespace Team21Project
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine("");
             Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
+            player.ShowStatus();
             Console.WriteLine($"");
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
@@ -273,7 +265,7 @@ namespace Team21Project
         /// </summary>
         static void DungeonUI()
         {
-            BattleSystem.BattleStart();
+            BattleSystem.BattleStart(player);
         }
 
 
