@@ -7,6 +7,7 @@ namespace Team21Project
         // 플레이어생성
         static IPlayerCharacter player;
         static string playerName;
+        static Inventory inventory;//
         
         static void Main(string[] args)
         {
@@ -41,8 +42,8 @@ namespace Team21Project
             Console.WriteLine("원하시는 직업을 선택해주세요.");
             Console.WriteLine("");
             Console.WriteLine($"1. 전사");
-            Console.WriteLine($"2. 궁수");
-            Console.WriteLine($"3. 도적");
+            Console.WriteLine($"2. 도적");
+            Console.WriteLine($"3. 궁수");
             Console.Write(">>");
 
             int result = CheckInput(1, 3);
@@ -152,23 +153,24 @@ namespace Team21Project
             Console.WriteLine("■■■■■■■ INVENTORY ■■■■■■■");
             Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine(" ");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
+
+            inventory.ShowInven(); //
+
+            Console.WriteLine("1. 장착 관리"); //
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            int result = CheckInput(0, 0);
+            int result = CheckInput(0, 1); //
 
             switch (result)
             {
                 case 0:
                     GameMainUI();
+                    break;
+                case 1:
+                    //inventory.ShowEquipped(); // 보류.
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다");
