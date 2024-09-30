@@ -13,6 +13,7 @@ namespace Team21Project
         int Current_Health {  get; set; }
         int Gold { get; set; }
         void TakeDamage(int damge);
+        public void ShowStatus();
     }
 
     public class Wrroior : IPlayerCharacter
@@ -51,8 +52,8 @@ namespace Team21Project
             }
             else
             {
-                //Current_Health -= damage;
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
+                Current_Health -= damage;
             }
         }
 
@@ -105,8 +106,8 @@ namespace Team21Project
             }
             else
             {
-                //Current_Health -= damage;
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
+                Current_Health -= damage;
             }
         }
 
@@ -159,8 +160,8 @@ namespace Team21Project
             }
             else
             {
-                //Current_Health -= damage;
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
+                Current_Health -= damage;
             }
         }
 

@@ -9,6 +9,7 @@ namespace Team21Project
         public int Level { get; set; }
         public int Hp { get; set; }
         public int Attack { get; set; }
+        public bool IsDead { get; set; }
         public int Exp { get; set; }
 
 
@@ -19,6 +20,7 @@ namespace Team21Project
             Hp = hp;
             Attack = attack;
             Exp = exp;
+            IsDead = false;
         }
 
         public void AttackPlayer()
