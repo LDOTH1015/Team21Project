@@ -7,7 +7,7 @@ namespace Team21Project
         // 플레이어생성
         static IPlayerCharacter player;
         static string playerName;
-        static Inventory inventory;//
+        static Inventory inventory = new Inventory();//
         
         static void Main(string[] args)
         {
@@ -156,7 +156,7 @@ namespace Team21Project
 
             inventory.ShowInven(); //
 
-            Console.WriteLine("1. 장착 관리"); //
+            Console.WriteLine("\n1. 장착 관리"); //
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
