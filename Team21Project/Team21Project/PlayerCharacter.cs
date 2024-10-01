@@ -17,7 +17,7 @@ namespace Team21Project
         public void ShowStatus();
     }
 
-    public class Wrroior : IPlayerCharacter
+    public class Warrior : IPlayerCharacter
     {
         public int Level { get; set; }
         public string Name { get; set; }
@@ -29,7 +29,7 @@ namespace Team21Project
         public int Gold { get; set; }
         public Inventory Inventory { get; set; }
 
-        public Wrroior(string name)
+        public Warrior(string name)
         {
             Level = 1;
             Name = name;

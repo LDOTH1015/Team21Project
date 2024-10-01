@@ -52,7 +52,7 @@ namespace Team21Project
 
             switch (result)
             {
-                case 1: player = new Wrroior(playerName);
+                case 1: player = new Warrior(playerName);
                     List<Item> item = new List<Item>()
                     {
                         new Item("TestItem","테스트를 위해 만들어진 아이템",1,2,3,ItemType.Weapon)
