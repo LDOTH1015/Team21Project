@@ -21,6 +21,7 @@ namespace Team21Project
         /// </summary>
         static void PlayerNameSettingUI() 
         {
+            Console.WriteLine("");
             Console.WriteLine("■■■■■■■ WELCOME TO SPARTA ■■■■■■■");
             Console.WriteLine("");
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
@@ -37,6 +38,7 @@ namespace Team21Project
         static void PlayerJobSettingUI()
         {
             Console.Clear();
+            Console.WriteLine("");
             Console.WriteLine("■■■■■■■ SELECT JOB ■■■■■■■■");
             Console.WriteLine("");
             Console.WriteLine("원하시는 직업을 선택해주세요.");
@@ -63,9 +65,9 @@ namespace Team21Project
         static void GameMainUI()
         {
             Console.Clear();
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("■■■■■■■ GAME MAIN ■■■■■■");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
             Console.WriteLine("");
@@ -106,9 +108,9 @@ namespace Team21Project
         static void CharacterStatUI() 
         {
             Console.Clear();
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("■■■■■■■ PLAYER STATUS ■■■■■■■");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine("");            
@@ -149,14 +151,16 @@ namespace Team21Project
         static void InventoryUI()
         {
             Console.Clear();
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("■■■■■■■ INVENTORY ■■■■■■■");
+            Console.WriteLine("");
             Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
 
             inventory.ShowInven(); //
 
             Console.WriteLine("\n1. 장착 관리"); //
+            Console.WriteLine("2. 상점"); //
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -171,6 +175,10 @@ namespace Team21Project
                     break;
                 case 1:
                     //inventory.ShowEquipped(); // 보류.
+                    //인벤토리에 아이템이 없습니다>>> 상점에서 아이템을 구매해주세요^-^!
+                    break; 
+                case 2:
+                    ShopUI();
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다");
@@ -186,16 +194,16 @@ namespace Team21Project
         static void ShopUI()
         {
             Console.Clear();            
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("■■■■■■■ STORE ■■■■■■■■");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("[보유골드]");
             Console.WriteLine($"{player.Gold} G");
             Console.WriteLine(" ");
             Console.WriteLine("[아이템 목록]");
-            Console.WriteLine(" ");            
+            Console.WriteLine("");            
             Console.WriteLine($"");
             Console.WriteLine($"");
             Console.WriteLine($"");
@@ -232,12 +240,12 @@ namespace Team21Project
             Console.Clear();
             Console.WriteLine("■■■■■■■ STORE ■■■■■■■■");
             Console.Write("구매할 아이템 번호를 입력해주세요 : ");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("[보유골드]");
             Console.WriteLine($"{player.Gold} G");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine("[아이템 목록]");
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.WriteLine($"");
             Console.WriteLine($"");
             Console.WriteLine($"");
