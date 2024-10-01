@@ -129,9 +129,23 @@ namespace Team21Project
 
         public void SkillSteal()
         {
-            int stealGold = 50;
-            Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용하여 {stealGold} G를 훔쳤습니다.");
-            Gold += stealGold;
+            Random random = new Random();
+            int randSkill = random.Next(0, 100);
+            int stealGold = 20;
+            int skillDamage;
+            if(randSkill < 30)
+            {
+                skillDamage = Attack * 2;
+                Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용중 행운이 발동하여 평소보다 많은 {stealGold*2} G를 훔쳤습니다.");
+                Gold += stealGold;
+            }
+            else
+            {
+                skillDamage = Attack * 2;
+                Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용하여 {stealGold} G를 훔쳤습니다.");
+                Gold += stealGold;
+            }
+            
         }
 
         public void ShowStatus()
