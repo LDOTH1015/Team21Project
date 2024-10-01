@@ -35,7 +35,6 @@ namespace Team21Project
 
         void EquippedItem(int itemIdx, IPlayerCharacter character)
         {
-            //WrroiorItme items = wrroiorItmes[itemIdx];
             Item items = Items[itemIdx];
             if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon == null)
             {
@@ -78,33 +77,42 @@ namespace Team21Project
             }
         }
 
-        public void ShowEquipped(string selectInput, IPlayerCharacter character)
+        public void ShowEquipped(IPlayerCharacter character)
         {
-            bool isExit = false;
+            Console.WriteLine("");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">>");
 
-            while (!isExit)
+            string input = Console.ReadLine();
+            switch (input)
             {
-                switch (selectInput)
-                {
-                    case "1":
-                        if (int.TryParse(Console.ReadLine(), out int equipIdx)
-                            && equipIdx >= 1 && equipIdx <= Items.Count)
-                        {
-                            EquippedItem(equipIdx - 1, character);
-                        }
-                        else
-                        {
-                            Console.WriteLine("잘못된 입력입니다.");
-                        }
-                        break;
-                    case "0":
-                        isExit = true;
-                        break;
-                    default:
-                        Console.WriteLine("잘못된 입력입니다.");
-                        break;
+                case "1":
+                    if (int.TryParse(input, out int equipIdx)
+                        && equipIdx >= 1 && equipIdx <= Items.Count)
+                    {
+                        EquippedItem(equipIdx - 1, character);
+                        ShowEquipped(character);
+                    }
+                    else
+                    {
+                        Console.WriteLine("인벤토리에 아이템이 없습니다>>> 상점에서 아이템을 구매해주세요^-^!");
                 }
+                    break;
+                case "0":
+                break;
+                default:
+                Console.WriteLine("인벤토리에 아이템이 없습니다>>> 상점에서 아이템을 구매해주세요^-^!");
+                break;
             }
+        }
+
+        /// <summary>
+        /// 임시 테스트용 인벤토리 List추가
+        /// </summary>
+        /// <param name="item"></param>
+        public void AddItem(Item item)
+        {
+            Items.Add(item);
         }
     }
 }
