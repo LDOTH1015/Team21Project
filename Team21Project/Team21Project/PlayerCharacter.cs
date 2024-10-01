@@ -12,7 +12,7 @@ namespace Team21Project
         int Max_Health { get; set; }
         int Current_Health {  get; set; }
         int Gold { get; set; }
-        public Inventory Inventory { get; set; }
+        public Inventory Inventory { get; set; }       
         void TakeDamage(int damge);
         public void ShowStatus();
     }
@@ -56,6 +56,23 @@ namespace Team21Project
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
                 Current_Health -= damage;
             }
+        }
+
+        public void SkillDamage()
+        {
+            Random random = new Random();
+            int randSkill = random.Next(0, 100);
+            int skillDamage;
+            if (randSkill < 30) // 30% 확률로 4배 발동
+            {
+                skillDamage = Attack * 4;
+                Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용중 치명적인 힘이 스며들어 {skillDamage}의 피해를 입혔습니다.");
+            }
+            else
+            {
+                skillDamage = Attack * 3;
+                Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용하여 {skillDamage}의 피해를 입혔습니다.");
+            }            
         }
 
         public void ShowStatus()
@@ -110,10 +127,17 @@ namespace Team21Project
             }
         }
 
+        public void SkillSteal()
+        {
+            int stealGold = 50;
+            Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용하여 {stealGold} G를 훔쳤습니다.");
+            Gold += stealGold;
+        }
+
         public void ShowStatus()
         {
             
-
+            
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
@@ -161,6 +185,23 @@ namespace Team21Project
             {
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
                 Current_Health -= damage;
+            }
+        }
+
+        public void SkillDamage()
+        {
+            Random random = new Random();
+            int randSkill = random.Next(0, 100);
+            int skillDamage;
+            if (randSkill < 30) // 30% 확률로 4배 발동
+            {
+                skillDamage = Attack * 4;
+                Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용중 바람의 힘이 깃들어 {skillDamage}의 피해를 입혔습니다.");
+            }
+            else
+            {
+                skillDamage = Attack * 3;
+                Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용하여 {skillDamage}의 피해를 입혔습니다.");
             }
         }
 
