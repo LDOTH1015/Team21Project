@@ -52,7 +52,13 @@ namespace Team21Project
 
             switch (result)
             {
-                case 1: player = new Wrroior(playerName); break;
+                case 1: player = new Wrroior(playerName);
+                    List<Item> item = new List<Item>()
+                    {
+                        new Item("TestItem","테스트를 위해 만들어진 아이템",1,2,3,ItemType.Weapon)
+                    };
+                    inventory.AddItem(item.First());
+                        break;
                 case 2: player = new Thief(playerName); break;
                 case 3: player = new Archer(playerName); break;
             }
@@ -174,8 +180,7 @@ namespace Team21Project
                     GameMainUI();
                     break;
                 case 1:
-                    //inventory.ShowEquipped(); // 보류.
-                    //인벤토리에 아이템이 없습니다>>> 상점에서 아이템을 구매해주세요^-^!
+                    EquippedUI();
                     break; 
                 case 2:
                     ShopUI();
@@ -187,6 +192,35 @@ namespace Team21Project
                     return;
             }
 
+        }
+        /// <summary>
+        /// 장비장착 관리화면
+        /// </summary>
+        static void EquippedUI()
+        {
+            Console.Clear();
+            Console.WriteLine("");
+            Console.WriteLine("■■■■■■■ INVENTORY ■■■■■■■");
+            Console.WriteLine("");
+            Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
+            Console.WriteLine("");
+            inventory.ShowInven();
+
+            Console.WriteLine("\n0. 나가기");
+            inventory.ShowEquipped(player);
+            
+            int result = CheckInput(0, 0); //
+            
+                switch (result)
+            {
+                case 0:
+                    InventoryUI();
+                    break;
+                default:
+                    Console.ReadKey();
+                    CharacterStatUI();
+                    return;
+            }
         }
         /// <summary>
         /// 상점화면

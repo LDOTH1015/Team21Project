@@ -29,10 +29,6 @@ namespace Team21Project
         public int Gold { get; set; }
         public Inventory Inventory { get; set; }
 
-
-        public Item EquippedWeapon { get; set; }
-        public Item EquippedArmor { get; set; }
-
         public Wrroior(string name)
         {
             Level = 1;
@@ -64,13 +60,10 @@ namespace Team21Project
 
         public void ShowStatus()
         {
-            int equippedAtk = EquippedWeapon != null ? EquippedWeapon.AttackBouns : 0;
-            int equippedDef = EquippedArmor != null ? EquippedArmor.DefenseBouns : 0;
-
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"{Name} {{ {Job} }}");
-            Console.WriteLine($"공격력 : {Attack} {(equippedAtk > 0 ? $"(+{equippedAtk})" : "")}");
-            Console.WriteLine($"방어력 : {Defense} {(equippedDef > 0 ? $"(+{equippedDef})" : "")}");
+            Console.WriteLine($"공격력 : {Attack}");
+            Console.WriteLine($"방어력 : {Defense}");
             Console.WriteLine($"체력 : {Max_Health}");
             Console.WriteLine($"Gold : {Gold}");
         }
