@@ -30,7 +30,7 @@
                 Console.Write("."); // Print a dot to simulate loading
                 Console.Beep();
             }
-            while (killMonster != monsters.Count || player.Current_Health != 0)
+            while (killMonster != monsters.Count && player.Current_Health != 0)
             {
                 do
                 {
