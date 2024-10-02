@@ -11,6 +11,8 @@ namespace Team21Project
         int Defense { get; set; }
         int Max_Health { get; set; }
         int Current_Health {  get; set; }
+        int Max_Mp { get; set; }
+        int Current_MP { get; set; }
         int Gold { get; set; }
         public Inventory Inventory { get; set; }       
         void TakeDamage(int damge);
@@ -31,6 +33,8 @@ namespace Team21Project
         public int Defense { get; set; }
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
+        public int Max_Mp { get; set; }
+        public int Current_MP { get; set; }
         public int Gold { get; set; }
         public Inventory Inventory { get; set; }
 
@@ -45,6 +49,8 @@ namespace Team21Project
             Defense = 6;
             Max_Health = 100;
             Current_Health = 100;
+            Max_Mp = 50;
+            Current_MP = 50;
             Gold = 1500;
             Inventory = new Inventory();
         }
@@ -52,16 +58,16 @@ namespace Team21Project
         public void LevelUp(int getExp)
         {
             Current_Exp += getExp;
+            Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
                 Level += 1;
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
-            }
-            else
-            {
-                Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
+                Max_Mp += Max_Mp;
+                Attack += Attack;
+                Max_Health += 50;
             }
         }
 
@@ -85,19 +91,29 @@ namespace Team21Project
         {
             Random random = new Random();
             int randSkill = random.Next(0, 100);
-            int skillDamage;
-            if (randSkill < 30) // 30% 확률로 4배 발동
+            int skillDamage = 0;
+
+            if (Current_MP >= 20)
             {
-                skillDamage = Attack * 4;
-                Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용중 치명적인 힘이 스며들어 {skillDamage}의 피해를 입혔습니다.");
+                Current_MP -= 20;
+                if (randSkill < 30) // 30% 확률로 4배 발동
+                {
+                    skillDamage = Attack * 4;
+                    Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용중 치명적인 힘이 스며들어 {skillDamage}의 피해를 입혔습니다.");
+                }
+                else
+                {
+                    skillDamage = Attack * 3;
+                    Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용하여 {skillDamage}의 피해를 입혔습니다.");
+                }
             }
             else
             {
-                skillDamage = Attack * 3;
-                Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용하여 {skillDamage}의 피해를 입혔습니다.");
+                Console.Write("스킬을 사용할 MP가 모자랍니다.");
             }
             return skillDamage;
         }
+
         public int AttackDamage()
         {
             Random random = new Random();
@@ -119,10 +135,12 @@ namespace Team21Project
         public void ShowStatus()
         {
             Console.WriteLine($"\nLV. {Level:D2}");
+            Console.WriteLine($"현재 Exp : {Current_Exp} / {Max_Exp}");
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Max_Health}");
+            Console.WriteLine($"체력 : {Current_Health}");
+            Console.WriteLine($"마나 : {Current_MP}");
             Console.WriteLine($"Gold : {Gold}");
         }
     }
@@ -138,6 +156,8 @@ namespace Team21Project
         public int Defense { get; set; }
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
+        public int Max_Mp { get; set; }
+        public int Current_MP { get; set; }
         public int Gold { get; set; }
         public Inventory Inventory { get; set; }
 
@@ -152,6 +172,8 @@ namespace Team21Project
             Defense = 4;
             Max_Health = 100;
             Current_Health = 100;
+            Max_Mp = 70;
+            Current_MP = 70;
             Gold = 1500;
             Inventory = new Inventory();
         }
@@ -159,16 +181,16 @@ namespace Team21Project
         public void LevelUp(int getExp)
         {
             Current_Exp += getExp;
+            Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
                 Level += 1;
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
-            }
-            else
-            {
-                Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
+                Max_Mp += Max_Mp;
+                Attack += Attack;
+                Max_Health += 50;
             }
         }
 
@@ -193,19 +215,26 @@ namespace Team21Project
             Random random = new Random();
             int randSkill = random.Next(0, 100);
             int stealGold = 20;
-            int skillDamage;
-            if(randSkill < 30)
+            int skillDamage = 0;
+
+            if (Current_MP >= 15)
             {
-                skillDamage = Attack * 2;
-                Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용중 행운이 발동하여 평소보다 많은 {stealGold*2} G를 훔쳤습니다.");
-                Gold += stealGold;
+                Current_MP -= 15;
+
+                if (randSkill < 30)
+                {
+                    skillDamage = Attack * 2;
+                    Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용중 행운이 발동하여 평소보다 많은 {stealGold * 2} G를 훔쳤습니다.");
+                    Gold += stealGold;
+                }
+                else
+                {
+                    skillDamage = Attack * 2;
+                    Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용하여 {stealGold} G를 훔쳤습니다.");
+                    Gold += stealGold;
+                }
             }
-            else
-            {
-                skillDamage = Attack * 2;
-                Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용하여 {stealGold} G를 훔쳤습니다.");
-                Gold += stealGold;
-            }
+                
             return skillDamage;
         }
 
@@ -230,10 +259,12 @@ namespace Team21Project
         public void ShowStatus()
         {
             Console.WriteLine($"\nLV. {Level:D2}");
+            Console.WriteLine($"현재 Exp : {Current_Exp} / {Max_Exp}");
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Max_Health}");
+            Console.WriteLine($"체력 : {Current_Health}");
+            Console.WriteLine($"마나 : {Current_MP}");
             Console.WriteLine($"Gold : {Gold}");
         }
     }
@@ -249,6 +280,8 @@ namespace Team21Project
         public int Defense { get; set; }
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
+        public int Max_Mp { get; set; }
+        public int Current_MP { get; set; }
         public int Gold { get; set; }
         public Inventory Inventory { get; set; }
 
@@ -263,6 +296,8 @@ namespace Team21Project
             Defense = 3;
             Max_Health = 100;
             Current_Health = 100;
+            Max_Mp = 60;
+            Current_MP = 60;
             Gold = 1500;
             Inventory = new Inventory();
         }
@@ -270,16 +305,16 @@ namespace Team21Project
         public void LevelUp(int getExp)
         {
             Current_Exp += getExp;
+            Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
                 Level += 1;
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
-            }
-            else
-            {
-                Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
+                Max_Mp += Max_Mp;
+                Attack += Attack;
+                Max_Health += 50;
             }
         }
 
@@ -303,17 +338,22 @@ namespace Team21Project
         {
             Random random = new Random();
             int randSkill = random.Next(0, 100);
-            int skillDamage;
-            if (randSkill < 30) // 30% 확률로 4배 발동
+            int skillDamage = 0;
+            if (Current_MP >= 20)
             {
-                skillDamage = Attack * 4;
-                Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용중 바람의 힘이 깃들어 {skillDamage}의 피해를 입혔습니다.");
+                Current_MP -= 20;
+                if (randSkill < 30) // 30% 확률로 4배 발동
+                {
+                    skillDamage = Attack * 4;
+                    Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용중 바람의 힘이 깃들어 {skillDamage}의 피해를 입혔습니다.");
+                }
+                else
+                {
+                    skillDamage = Attack * 3;
+                    Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용하여 {skillDamage}의 피해를 입혔습니다.");
+                }
             }
-            else
-            {
-                skillDamage = Attack * 3;
-                Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용하여 {skillDamage}의 피해를 입혔습니다.");
-            }
+
             return skillDamage;
         }
 
@@ -337,12 +377,13 @@ namespace Team21Project
 
         public void ShowStatus()
         {
-
             Console.WriteLine($"\nLV. {Level:D2}");
+            Console.WriteLine($"현재 Exp : {Current_Exp} / {Max_Exp}");
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Max_Health}");
+            Console.WriteLine($"체력 : {Current_Health}");
+            Console.WriteLine($"마나 : {Current_MP}");
             Console.WriteLine($"Gold : {Gold}");
         }
     }
