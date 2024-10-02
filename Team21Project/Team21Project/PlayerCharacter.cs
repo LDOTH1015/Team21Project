@@ -14,6 +14,7 @@ namespace Team21Project
         int Max_Mp { get; set; }
         int Current_MP { get; set; }
         int Gold { get; set; }
+        public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }       
         void TakeDamage(int damge);
         public void ShowStatus();
@@ -36,6 +37,7 @@ namespace Team21Project
         public int Max_Mp { get; set; }
         public int Current_MP { get; set; }
         public int Gold { get; set; }
+        public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }
 
         public Warrior(string name)
@@ -52,6 +54,7 @@ namespace Team21Project
             Max_Mp = 50;
             Current_MP = 50;
             Gold = 1500;
+            IsDead = false;
             Inventory = new Inventory();
         }
 
@@ -82,8 +85,13 @@ namespace Team21Project
             }
             else
             {
+                if (Current_Health <= damage)
+                {
+                    IsDead = true;
+                }
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
                 Current_Health -= damage;
+
             }
         }
 
@@ -159,6 +167,7 @@ namespace Team21Project
         public int Max_Mp { get; set; }
         public int Current_MP { get; set; }
         public int Gold { get; set; }
+        public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }
 
         public Thief(string name)
@@ -205,6 +214,10 @@ namespace Team21Project
             }
             else
             {
+                if (Current_Health <= damage)
+                {
+                    IsDead = true;
+                }
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
                 Current_Health -= damage;
             }
@@ -283,6 +296,7 @@ namespace Team21Project
         public int Max_Mp { get; set; }
         public int Current_MP { get; set; }
         public int Gold { get; set; }
+        public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }
 
         public Archer(string name)
@@ -299,6 +313,7 @@ namespace Team21Project
             Max_Mp = 60;
             Current_MP = 60;
             Gold = 1500;
+            IsDead = false;
             Inventory = new Inventory();
         }
 
@@ -329,6 +344,10 @@ namespace Team21Project
             }
             else
             {
+                if (Current_Health <= damage)
+                {
+                    IsDead = true;
+                }
                 Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력 {Current_Health} -> {Current_Health - damage}");
                 Current_Health -= damage;
             }
