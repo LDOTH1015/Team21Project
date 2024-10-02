@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using static Team21Project.Program;
 
 namespace Team21Project
 {
@@ -6,9 +7,27 @@ namespace Team21Project
     {
         // 플레이어생성
         static IPlayerCharacter player;
+        static Item item;
         static string playerName;
-        static Inventory inventory = new Inventory();//
-        
+        static Inventory inventory = new Inventory();
+        public static List<Item> itemDb = new List<Item>()
+        {
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.Wrroioritem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.Wrroioritem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.Wrroioritem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.Thiefitem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.Thiefitem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.Thiefitem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.Thiefitem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.Archeritem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.Archeritem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.Archeritem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.Archeritem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.Wrroioritem)
+        };
+
+        //static Shop shop = new Shop();//
+
         static void Main(string[] args)
         {
             PlayerNameSettingUI();
@@ -19,7 +38,7 @@ namespace Team21Project
         /// <summary>
         /// 게임시작화면1 - 플레이어이름설정
         /// </summary>
-        static void PlayerNameSettingUI() 
+        static void PlayerNameSettingUI()
         {
             Console.WriteLine("");
             Console.WriteLine("■■■■■■■ WELCOME TO SPARTA ■■■■■■■");
@@ -52,15 +71,15 @@ namespace Team21Project
 
             switch (result)
             {
-                case 1: player = new Wrroior(playerName);
-                    List<Item> item = new List<Item>()
-                    {
-                        new Item("TestItem","테스트를 위해 만들어진 아이템",1,2,3,ItemType.Weapon)
-                    };
-                    inventory.AddItem(item.First());
-                        break;
-                case 2: player = new Thief(playerName); break;
-                case 3: player = new Archer(playerName); break;
+                case 1:
+                    player = new Wrroior(playerName);
+                    break;
+                case 2:
+                    player = new Thief(playerName);
+                    break;
+                case 3:
+                    player = new Archer(playerName);
+                    break;
             }
             Console.WriteLine($"플레이어의 직업은 \"{player.Job}\" 입니다");
             Console.ReadLine();
@@ -70,48 +89,50 @@ namespace Team21Project
         /// </summary>
         static void GameMainUI()
         {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("■■■■■■■ GAME MAIN ■■■■■■");
-            Console.WriteLine("");
-            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
-            Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
-            Console.WriteLine("");
-            Console.WriteLine("1. 상태 보기");
-            Console.WriteLine("2. 인벤토리");
-            Console.WriteLine("3. 상점");
-            Console.WriteLine("4. 전투 시작");
-            Console.WriteLine("");
-            Console.WriteLine("원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-
-            int result = CheckInput(1, 4);
-
-            switch (result)            
+            while (true)
             {
-                case 1:
-                    CharacterStatUI();
-                    break;
-                case 2:
-                    InventoryUI();
-                    break; 
-                case 3:
-                    ShopUI();
-                    break;
-                case 4:
-                    DungeonUI();
-                    break;               
-                default:
-                    Console.WriteLine("잘못된 입력입니다");
-                    Console.ReadKey();
-                    GameMainUI();
-                    return;
+                Console.Clear();
+                Console.WriteLine("");
+                Console.WriteLine("■■■■■■■ GAME MAIN ■■■■■■");
+                Console.WriteLine("");
+                Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
+                Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
+                Console.WriteLine("");
+                Console.WriteLine("1. 상태 보기");
+                Console.WriteLine("2. 인벤토리");
+                Console.WriteLine("3. 상점");
+                Console.WriteLine("4. 전투 시작");
+                Console.WriteLine("");
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">>");
+
+                int result = CheckInput(1, 4);
+
+                switch (result)
+                {
+                    case 1:
+                        CharacterStatUI();
+                        break;
+                    case 2:
+                        InventoryUI();
+                        break;
+                    case 3:
+                        ShopUI();
+                        break;
+                    case 4:
+                        DungeonUI();
+                        break;
+                    default:
+                        Console.ReadKey();
+                        GameMainUI();
+                        return;
+                }
             }
         }
         /// <summary>
         /// 상태보기화면(팀원-플레이어담당-확인필요)
         /// </summary>
-        static void CharacterStatUI() 
+        static void CharacterStatUI()
         {
             Console.Clear();
             Console.WriteLine("");
@@ -119,7 +140,7 @@ namespace Team21Project
             Console.WriteLine("");
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-            Console.WriteLine("");            
+            Console.WriteLine("");
 
             player.ShowStatus();
 
@@ -135,21 +156,12 @@ namespace Team21Project
             {
                 case 0:
                     GameMainUI();
-                    break;                
+                    break;
                 default:
-                    Console.WriteLine("잘못된 입력입니다");
                     Console.ReadKey();
                     CharacterStatUI();
                     return;
             }
-              /* 
-              Lv. 01
-              Chad(전사)
-              공격력: 10
-              방어력: 5
-              체 력 : 100
-              Gold: 1500 G
-              */
         }
         /// <summary>
         /// 인벤토리화면
@@ -163,16 +175,16 @@ namespace Team21Project
             Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine("");
 
-            inventory.ShowInven(); //
+            inventory.ShowInven();
 
-            Console.WriteLine("\n1. 장착 관리"); //
-            Console.WriteLine("2. 상점"); //
+            Console.WriteLine("\n1. 장착 관리");
+            Console.WriteLine("2. 상점");
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            int result = CheckInput(0, 1); //
+            int result = CheckInput(0, 1);
 
             switch (result)
             {
@@ -181,14 +193,12 @@ namespace Team21Project
                     break;
                 case 1:
                     EquippedUI();
-                    break; 
+                    break;
                 case 2:
                     ShopUI();
                     break;
                 default:
-                    Console.WriteLine("잘못된 입력입니다");
                     Console.ReadKey();
-                    CharacterStatUI();
                     return;
             }
 
@@ -202,23 +212,24 @@ namespace Team21Project
             Console.WriteLine("");
             Console.WriteLine("■■■■■■■ INVENTORY ■■■■■■■");
             Console.WriteLine("");
-            Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
+            Console.WriteLine("보유중인 아이템을 장착할 수 있습니다.");
             Console.WriteLine("");
+
             inventory.ShowInven();
 
             Console.WriteLine("\n0. 나가기");
+
             inventory.ShowEquipped(player);
-            
-            int result = CheckInput(0, 0); //
-            
-                switch (result)
+
+            int result = CheckInput(0, 0);
+
+            switch (result)
             {
                 case 0:
-                    InventoryUI();
+                    GameMainUI();
                     break;
                 default:
                     Console.ReadKey();
-                    CharacterStatUI();
                     return;
             }
         }
@@ -227,7 +238,7 @@ namespace Team21Project
         /// </summary>
         static void ShopUI()
         {
-            Console.Clear();            
+            Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("■■■■■■■ STORE ■■■■■■■■");
             Console.WriteLine("");
@@ -237,7 +248,10 @@ namespace Team21Project
             Console.WriteLine($"{player.Gold} G");
             Console.WriteLine(" ");
             Console.WriteLine("[아이템 목록]");
-            Console.WriteLine("");            
+            Console.WriteLine("");
+
+            ShowItem();
+
             Console.WriteLine($"");
             Console.WriteLine($"");
             Console.WriteLine($"");
@@ -280,17 +294,17 @@ namespace Team21Project
             Console.WriteLine("");
             Console.WriteLine("[아이템 목록]");
             Console.WriteLine("");
+
+            ShowItem();
+
             Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");            
+
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            int result = CheckInput(0, 0);
+            int result = CheckInput(0, itemDb.Count);
 
             switch (result)
             {
@@ -298,9 +312,10 @@ namespace Team21Project
                     GameMainUI();
                     break;
                 default:
-                    Console.WriteLine("잘못된 입력입니다");
+
+
                     Console.ReadKey();
-                    CharacterStatUI();
+                    ShopBuyUI();
                     return;
             }
 
@@ -326,11 +341,42 @@ namespace Team21Project
                 if (isNum)
                 {
                     if (result >= min && result <= max)
-                        return result;                        
+                        return result;
                 }
                 Console.WriteLine("잘못된 입력입니다");
             }
         }
+        public static void ShowItem()
+        {
+
+            for (int i = 0; i < itemDb.Count; i++)
+            {
+                Item curItem = itemDb[i];
+                string displayPrice = player.HasItem(curItem) ? "구매완료" : $"{curItem.Price} G";
+                Console.WriteLine($" [ {i + 1} ] {curItem.ItemInfoText()} | {displayPrice}");
+            }
+        }
+
+        public static void BuyItem()
+        {
+            int result = CheckInput(0, itemDb.Count);
+            Item targetItem = itemDb[result - 1];
+            if (itemDb.Contains(targetItem))
+            {
+                Console.WriteLine("이미 구매한 아이템입니다.");
+            }
+            else
+            {
+                if (player.Gold <= item.Price[targetItem])
+                {
+                    Console.WriteLine("구매를 완료했습니다.");
+                    player.Gold -= item.Price[targetItem];
+                }
+                else
+                    Console.WriteLine("골드가 부족합니다.");
+            }
+        }
+
 
     }
 }
