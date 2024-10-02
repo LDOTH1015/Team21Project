@@ -8,8 +8,8 @@ namespace Team21Project
         // 플레이어생성
         static IPlayerCharacter player;
         static Item item;
-        static string playerName;
-        static Inventory inventory = new Inventory();//
+        static string playerName; 
+        
         static List<Quest> quests = new List<Quest>();
         static Quest questSystem = new Quest();      
         public static List<Item> itemDb = new List<Item>()
@@ -185,7 +185,7 @@ namespace Team21Project
             Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine("");
 
-            inventory.ShowInven();
+            player.Inventory.ShowInven();
 
             Console.WriteLine("\n1. 장착 관리");
             Console.WriteLine("2. 상점");
@@ -194,7 +194,7 @@ namespace Team21Project
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            int result = CheckInput(0, 1);
+            int result = CheckInput(0, 2);
 
             switch (result)
             {
@@ -225,11 +225,11 @@ namespace Team21Project
             Console.WriteLine("보유중인 아이템을 장착할 수 있습니다.");
             Console.WriteLine("");
 
-            inventory.ShowInven();
+            player.Inventory.ShowInven();
 
             Console.WriteLine("\n0. 나가기");
 
-            inventory.ShowEquipped(player);
+            player.Inventory.ShowEquipped(player);
 
             int result = CheckInput(0, 0);
 
@@ -263,10 +263,6 @@ namespace Team21Project
             ShowItem();
 
             Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
-            Console.WriteLine($"");
             Console.WriteLine("1. 아이템구매");
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
@@ -297,6 +293,7 @@ namespace Team21Project
         {
             Console.Clear();
             Console.WriteLine("■■■■■■■ STORE ■■■■■■■■");
+            Console.WriteLine("");
             Console.Write("구매할 아이템 번호를 입력해주세요 : ");
             Console.WriteLine("");
             Console.WriteLine("[보유골드]");
@@ -305,30 +302,26 @@ namespace Team21Project
             Console.WriteLine("[아이템 목록]");
             Console.WriteLine("");
 
-            ShowItem();
+            ShowItem();           
 
             Console.WriteLine($"");
-
             Console.WriteLine("0. 나가기");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
             int result = CheckInput(0, itemDb.Count);
+                        
 
-            switch (result)
+            if (result == 0)
             {
-                case 0:
-                    GameMainUI();
-                    break;
-                default:
-
-
-                    Console.ReadKey();
-                    ShopBuyUI();
-                    return;
+                ShopUI();
             }
-
+            else if (result >= 1 && result <= itemDb.Count)
+            {
+                BuyItem(result);
+                ShopBuyUI();
+            }
         }
         /// <summary>
         /// 던전입장화면
@@ -362,28 +355,31 @@ namespace Team21Project
             for (int i = 0; i < itemDb.Count; i++)
             {
                 Item curItem = itemDb[i];
-                string displayPrice = player.HasItem(curItem) ? "구매완료" : $"{curItem.Price} G";
+                string displayPrice = player.Inventory.Items.Contains(curItem) ? "구매완료" : $"{curItem.Price} G";
                 Console.WriteLine($" [ {i + 1} ] {curItem.ItemInfoText()} | {displayPrice}");
             }
         }
 
-        public static void BuyItem()
-        {
-            int result = CheckInput(0, itemDb.Count);
+        public static void BuyItem(int result)
+        {    
             Item targetItem = itemDb[result - 1];
-            if (itemDb.Contains(targetItem))
+
+            if (player.Inventory.Items.Contains(targetItem))
             {
                 Console.WriteLine("이미 구매한 아이템입니다.");
             }
             else
             {
-                if (player.Gold <= item.Price[targetItem])
+                if (player.Gold >= targetItem.Price)
                 {
                     Console.WriteLine("구매를 완료했습니다.");
-                    player.Gold -= item.Price[targetItem];
+                    player.Gold -= targetItem.Price;
+                    player.Inventory.Items.Add(targetItem);                    
                 }
                 else
-                    Console.WriteLine("골드가 부족합니다.");
+                { 
+                    Console.WriteLine("골드가 부족합니다.");                                   
+                }
             }
         }
 

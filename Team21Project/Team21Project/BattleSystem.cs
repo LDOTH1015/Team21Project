@@ -119,7 +119,7 @@
                 Console.WriteLine("- 보상 -");
                 Console.WriteLine("\t{0}G", gold);
                 Console.WriteLine("\t회복포션");
-                player.Inventory.Items.Add(new Item("회복포션","체력을 50 회복 시켜준다.",0,0,0,ItemType.Potion));
+                //player.Inventory.Items.Add(new Item("회복포션","체력을 50 회복 시켜준다.",0,0,0,ItemType.Potion));
                 Console.WriteLine("");
                 Console.WriteLine("아무키나 입력해주세요");
                 Console.ReadKey();
