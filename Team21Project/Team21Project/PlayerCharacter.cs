@@ -54,10 +54,14 @@ namespace Team21Project
             Current_Exp += getExp;
             if (Current_Exp >= Max_Exp)
             {
-                Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
+                Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
                 Level += 1;
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
+            }
+            else
+            {
+                Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
             }
         }
 
@@ -157,10 +161,14 @@ namespace Team21Project
             Current_Exp += getExp;
             if (Current_Exp >= Max_Exp)
             {
-                Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
+                Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
                 Level += 1;
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
+            }
+            else
+            {
+                Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
             }
         }
 
@@ -264,10 +272,14 @@ namespace Team21Project
             Current_Exp += getExp;
             if (Current_Exp >= Max_Exp)
             {
-                Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
+                Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
                 Level += 1;
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
+            }
+            else
+            {
+                Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
             }
         }
 
