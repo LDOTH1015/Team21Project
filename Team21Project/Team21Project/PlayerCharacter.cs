@@ -15,8 +15,9 @@ namespace Team21Project
         public Inventory Inventory { get; set; }       
         void TakeDamage(int damge);
         public void ShowStatus();
-        public void LevelUp();
+        public void LevelUp(int getExp);
         public int SkillDamage();
+        public int AttackDamage();
     }
 
     public class Warrior : IPlayerCharacter
@@ -48,8 +49,9 @@ namespace Team21Project
             Inventory = new Inventory();
         }
 
-        public void LevelUp()
+        public void LevelUp(int getExp)
         {
+            Current_Exp += getExp;
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
@@ -92,6 +94,23 @@ namespace Team21Project
             }
             return skillDamage;
         }
+        public int AttackDamage()
+        {
+            Random random = new Random();
+            int rndCritical = random.Next(0, 100);
+            int attackDamage;
+            if (rndCritical < 10) // 30% 확률로 4배 발동
+            {
+                attackDamage = Attack * 2;
+                Console.WriteLine($"치명타 발동! {Name}이(가) 치명타 {attackDamage}의 피해를 입혔습니다.");
+            }
+            else
+            {
+                attackDamage = Attack;
+                Console.WriteLine($"{Name}이(가) {attackDamage}의 피해를 입혔습니다.");
+            }
+            return attackDamage;
+        }
 
         public void ShowStatus()
         {
@@ -133,8 +152,9 @@ namespace Team21Project
             Inventory = new Inventory();
         }
 
-        public void LevelUp()
+        public void LevelUp(int getExp)
         {
+            Current_Exp += getExp;
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
@@ -181,6 +201,24 @@ namespace Team21Project
             return skillDamage;
         }
 
+        public int AttackDamage()
+        {
+            Random random = new Random();
+            int rndCritical = random.Next(0, 100);
+            int attackDamage;
+            if (rndCritical < 40) // 30% 확률로 4배 발동
+            {
+                attackDamage = Attack * 2;
+                Console.WriteLine($"치명타 발동! {Name}이(가) 치명타 {attackDamage}의 피해를 입혔습니다.");
+            }
+            else
+            {
+                attackDamage = Attack;
+                Console.WriteLine($"{Name}이(가) {attackDamage}의 피해를 입혔습니다.");
+            }
+            return attackDamage;
+        }
+
         public void ShowStatus()
         {
             Console.WriteLine($"\nLV. {Level:D2}");
@@ -221,8 +259,9 @@ namespace Team21Project
             Inventory = new Inventory();
         }
 
-        public void LevelUp()
+        public void LevelUp(int getExp)
         {
+            Current_Exp += getExp;
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
@@ -264,6 +303,24 @@ namespace Team21Project
                 Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용하여 {skillDamage}의 피해를 입혔습니다.");
             }
             return skillDamage;
+        }
+
+        public int AttackDamage()
+        {
+            Random random = new Random();
+            int rndCritical = random.Next(0, 100);
+            int attackDamage;
+            if (rndCritical < 20) // 30% 확률로 4배 발동
+            {
+                attackDamage = Attack * 2;
+                Console.WriteLine($"치명타 발동! {Name}이(가) 치명타 {attackDamage}의 피해를 입혔습니다.");
+            }
+            else
+            {
+                attackDamage = Attack;
+                Console.WriteLine($"{Name}이(가) {attackDamage}의 피해를 입혔습니다.");
+            }
+            return attackDamage;
         }
 
         public void ShowStatus()

@@ -85,6 +85,11 @@
                     {
                         break;
                     }
+
+                    if (monsters[i].IsDead)
+                    {
+                        killMonster++;
+                    }
                 }
             }
             BattleEnd(player, monsters);
@@ -99,6 +104,7 @@
             for(int i = 0; i < monsters.Count; i++)
             {
                 gold += monsters[i].Level * 50;
+                player.LevelUp(monsters[i].Level * 2);
             }
             if (player.Current_Health != 0)
             {
@@ -159,8 +165,8 @@
                     }
                     else
                     {
-                        Console.WriteLine("{0}가 기본 공격을 사용했습니다.", player.Attack);
-                        monsters[result-1].TakeDamage(player.Attack);
+                        //Console.WriteLine("{0}가 기본 공격을 사용했습니다.", player.Attack);
+                        monsters[result-1].TakeDamage(player.AttackDamage());
                     }
                 }
                 else
