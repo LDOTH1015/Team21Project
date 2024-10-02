@@ -46,8 +46,8 @@
 
         public string GetItemInfo()
         {
-            string equippedStatus = IsEquipped ? "[E]" : "";
-            return $"- {equippedStatus} {ItemInfoText()}";
+            string equippedStatus = IsEquipped ? "-[E]" : "-";
+            return $"{equippedStatus} {ItemInfoText()}";
         }
         public string ItemInfoText()
         {

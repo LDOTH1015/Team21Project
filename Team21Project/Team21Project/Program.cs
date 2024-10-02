@@ -14,18 +14,18 @@ namespace Team21Project
         static Quest questSystem = new Quest();      
         public static List<Item> itemDb = new List<Item>()
         {
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.WarriorItem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.WarriorItem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.WarriorItem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.WarriorItem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.ThiefItem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.ThiefItem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.ThiefItem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.ThiefItem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.ArcherItem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.ArcherItem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.ArcherItem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.ArcherItem) 
+            new Item("검",4,0,"초보자가 사용하는 기본 검",1000,ItemType.Weapon, JobItemType.WarriorItem),
+            new Item("목검",6,0,"고목나무로 만든 검",2000,ItemType.Weapon, JobItemType.WarriorItem),
+            new Item("하얀 반팔 면티",0,3,"방어력을 살짝 올려주는 하얀 티",1000,ItemType.Armor, JobItemType.WarriorItem),
+            new Item("주황색 스포츠 티셔츠",0,7,"누구나 탐내하는 주황색 티셔츠",2000,ItemType.Armor, JobItemType.WarriorItem),
+            new Item("후루츠 대거",4,0,"초보자가 사용하는 기본 단검",1000,ItemType.Weapon, JobItemType.ThiefItem),
+            new Item("스팅어",6,0,"도적이라면 탐내하는 은색 단검",2000,ItemType.Weapon, JobItemType.ThiefItem),
+            new Item("홍몽",0,3,"도적들만 착용할 수 있는 가벼운 조끼",1000,ItemType.Armor, JobItemType.ThiefItem),
+            new Item("검정색 파오",0,7,"유명한 도적이 중국 활동할 때 입은 파오",2000,ItemType.Armor, JobItemType.ThiefItem),
+            new Item("워 보우",4,0,"초보자가 사용하는 기본 활",1000,ItemType.Weapon, JobItemType.ArcherItem),
+            new Item("라이덴",6,0,"활 숙련도가 놓은 궁수만 쓸 수 있는 활",2000,ItemType.Weapon, JobItemType.ArcherItem),
+            new Item("브라운 오버롤 미니",0,3,"방어력이 올라가는 멜빵 바지",1000,ItemType.Armor, JobItemType.ArcherItem),
+            new Item("다크 데모닉 수트",0,7,"활을 쏠때 도움을 주는 수트",2000,ItemType.Armor, JobItemType.ArcherItem) 
         };
 
         //static Shop shop = new Shop();//
@@ -130,7 +130,7 @@ namespace Team21Project
                         DungeonUI();
                         break;
                     case 5:
-                         questSystem.ShowQuest(quests);
+                         questSystem.ShowQuest(quests, player);
                         break;
                     default:
                         Console.ReadKey();
@@ -228,21 +228,44 @@ namespace Team21Project
             player.Inventory.ShowInven();
 
             Console.WriteLine("\n0. 나가기");
+            Console.WriteLine("");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">>");
 
-            player.Inventory.ShowEquipped(player);
+            ShowEquipped();
+
+            Console.WriteLine("다음으로 넘어가시려면 아무키나 입력해주세요.");
+            Console.ReadKey();
+
+            EquippedUI();
 
             int result = CheckInput(0, 0);
-
+           
             switch (result)
             {
                 case 0:
-                    GameMainUI();
+                    InventoryUI();
                     break;
                 default:
                     Console.ReadKey();
                     return;
             }
         }
+
+        public static void ShowEquipped()
+        {
+           
+            int result = CheckInput(0, player.Inventory.Items.Count);
+            if (result == 0)
+            {
+                InventoryUI();
+            }
+            else if (result >= 1 && result <= player.Inventory.Items.Count)
+            {
+                player.Inventory.EquippedItem(result - 1, player);
+            }
+        }
+
         /// <summary>
         /// 상점화면
         /// </summary>

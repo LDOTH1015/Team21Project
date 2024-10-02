@@ -33,87 +33,57 @@ namespace Team21Project
             }
         }
 
-        void EquippedItem(int itemIdx, IPlayerCharacter character)
+        public void EquippedItem(int itemIdx, IPlayerCharacter character)
         {
             Item items = Items[itemIdx];
-            if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon == null)
+            if (character.JobType == (items.JobItemType.ToString()) || items.JobItemType.ToString() == "All")
             {
-                character.Attack += items.AttackBouns;
-                character.Defense += items.DefenseBouns;
-                items.IsEquipped = true;
-                Console.WriteLine($"{items.Name}을(를) 장착했습니다.");
-                EquippedWeapon = items;
-            }
-            else if (!items.IsEquipped && items.ItemType == ItemType.Armor && EquippedArmor == null)
-            {
-                character.Attack += items.AttackBouns;
-                character.Defense += items.DefenseBouns;
-                items.IsEquipped = true;
-                Console.WriteLine($"{items.Name}을(를) 장착했습니다.");
-                EquippedWeapon = items;
-            }
-            else if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon != null)
-            {
-                Console.Write("무기를 이미 장착중 입니다.");
-            }
-            else if (!items.IsEquipped && items.ItemType == ItemType.Armor && EquippedArmor != null)
-            {
-                Console.Write("방어구를 이미 장착중 입니다.");
-            }
-            else if (items.IsEquipped)
-            {
-                if (items.ItemType == ItemType.Weapon)
+                if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon == null)
                 {
-                    EquippedWeapon = null;
+                    character.Attack += items.AttackBouns;
+                    character.Defense += items.DefenseBouns;
+                    items.IsEquipped = true;
+                    Console.WriteLine($"{items.Name}을(를) 장착했습니다.");
+                    EquippedWeapon = items;
                 }
-                else
+                else if (!items.IsEquipped && items.ItemType == ItemType.Armor && EquippedArmor == null)
                 {
-                    EquippedArmor = null;
+                    character.Attack += items.AttackBouns;
+                    character.Defense += items.DefenseBouns;
+                    items.IsEquipped = true;
+                    Console.WriteLine($"{items.Name}을(를) 장착했습니다.");
+                    EquippedArmor = items;
                 }
-                character.Attack -= items.AttackBouns;
-                character.Defense -= items.DefenseBouns;
-                items.IsEquipped = false;
-                Console.WriteLine($"{items.Name}(을)를 해체했습니다.");
-            }
-        }
-
-        public void ShowEquipped(IPlayerCharacter character)
-        {
-            Console.WriteLine("");
-            Console.WriteLine("원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-
-            string input = Console.ReadLine();
-            switch (input)
-            {
-                case "1":
-                    if (int.TryParse(input, out int equipIdx)
-                        && equipIdx >= 1 && equipIdx <= Items.Count)
+                else if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon != null)
+                {
+                    Console.Write("무기를 이미 장착중 입니다.");
+                }
+                else if (!items.IsEquipped && items.ItemType == ItemType.Armor && EquippedArmor != null)
+                {
+                    Console.Write("방어구를 이미 장착중 입니다.");
+                }
+                else if (items.IsEquipped)
+                {
+                    if (items.ItemType == ItemType.Weapon)
                     {
-                        EquippedItem(equipIdx - 1, character);
-                        ShowEquipped(character);
+                        EquippedWeapon = null;
                     }
                     else
                     {
-                        Console.WriteLine("인벤토리에 아이템이 없습니다>>> 상점에서 아이템을 구매해주세요^-^!");
+                        EquippedArmor = null;
+                    }
+                    character.Attack -= items.AttackBouns;
+                    character.Defense -= items.DefenseBouns;
+                    items.IsEquipped = false;
+                    Console.WriteLine($"{items.Name}(을)를 해체했습니다.");
                 }
-                    break;
-                case "0":
-                break;
-                default:
-                Console.WriteLine("인벤토리에 아이템이 없습니다>>> 상점에서 아이템을 구매해주세요^-^!");
-                break;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("이 직업의 아이템이 아닙니다.");
+                Console.ResetColor();
             }
         }
-
-        /// <summary>
-        /// 임시 테스트용 인벤토리 List추가
-        /// </summary>
-        /// <param name="item"></param>
-        public void AddItem(Item item)
-        {
-            Items.Add(item);
-        }
-
     }
 }

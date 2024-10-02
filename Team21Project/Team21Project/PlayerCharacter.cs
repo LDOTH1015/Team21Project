@@ -7,6 +7,7 @@ namespace Team21Project
         int Level { get; set; }
         string Name {  get; set; }
         string Job { get; set; }
+        string JobType { get; set; }
         int Attack { get; set; }
         int Defense { get; set; }
         int Max_Health { get; set; }
@@ -15,7 +16,7 @@ namespace Team21Project
         int Current_MP { get; set; }
         int Gold { get; set; }
         public bool IsDead { get; set; }
-        public Inventory Inventory { get; set; }       
+        public Inventory Inventory { get; set; }
         void TakeDamage(int damge);
         public void ShowStatus();
         public void LevelUp(int getExp);
@@ -30,6 +31,7 @@ namespace Team21Project
         public int Level { get; set; }
         public string Name { get; set; }
         public string Job { get; set; }
+        public string JobType { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
         public int Max_Health { get; set; }
@@ -56,6 +58,7 @@ namespace Team21Project
             Gold = 1500;
             IsDead = false;
             Inventory = new Inventory();
+            JobType = "WarriorItem";
         }
 
         public void LevelUp(int getExp)
@@ -160,6 +163,7 @@ namespace Team21Project
         public int Level { get; set; }
         public string Name { get; set; }
         public string Job { get; set; }
+        public string JobType { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
         public int Max_Health { get; set; }
@@ -185,6 +189,7 @@ namespace Team21Project
             Current_MP = 70;
             Gold = 1500;
             Inventory = new Inventory();
+            JobType = "ThiefItem";
         }
 
         public void LevelUp(int getExp)
@@ -289,6 +294,7 @@ namespace Team21Project
         public int Level { get; set; }
         public string Name { get; set; }
         public string Job { get; set; }
+        public string JobType { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
         public int Max_Health { get; set; }
@@ -315,6 +321,7 @@ namespace Team21Project
             Gold = 1500;
             IsDead = false;
             Inventory = new Inventory();
+            JobType = "ArcherItem";
         }
 
         public void LevelUp(int getExp)
