@@ -12,6 +12,8 @@ namespace Team21Project
         static Inventory inventory = new Inventory();//
         static List<Quest> quests = new List<Quest>();
         static Quest questSystem = new Quest();
+        
+        static Inventory inventory = new Inventory();
         public static List<Item> itemDb = new List<Item>()
         {
             new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.Wrroioritem),
