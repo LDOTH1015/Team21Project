@@ -96,7 +96,7 @@
 
         public static void NomalAttck(IPlayerCharacter player, List<Monster> monsters)
         {
-            IPlayerCharacter player1 = new Wrroior("");
+            IPlayerCharacter player1 = new Warrior("");
             Console.Clear();
             Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
             Console.WriteLine("");
