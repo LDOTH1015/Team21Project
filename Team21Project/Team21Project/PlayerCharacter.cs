@@ -61,7 +61,7 @@ namespace Team21Project
         public void LevelUp(int getExp)
         {
             Current_Exp += getExp;
-            Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
+            Console.WriteLine($"{Name}이(가) 경험치{getExp}를 획득 했습니다. {Current_Exp} / {Max_Exp}");
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
@@ -147,8 +147,8 @@ namespace Team21Project
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Current_Health}");
-            Console.WriteLine($"마나 : {Current_MP}");
+            Console.WriteLine($"체력 : {Current_Health} / {Max_Health}");
+            Console.WriteLine($"마나 : {Current_MP} / {Max_Mp}");
             Console.WriteLine($"Gold : {Gold}");
         }
     }
@@ -190,7 +190,7 @@ namespace Team21Project
         public void LevelUp(int getExp)
         {
             Current_Exp += getExp;
-            Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
+            Console.WriteLine($"{Name}이(가) 경험치{getExp}를 획득 했습니다. {Current_Exp} / {Max_Exp}");
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
@@ -276,8 +276,8 @@ namespace Team21Project
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Current_Health}");
-            Console.WriteLine($"마나 : {Current_MP}");
+            Console.WriteLine($"체력 : {Current_Health} / {Max_Health}");
+            Console.WriteLine($"마나 : {Current_MP} / {Max_Mp}");
             Console.WriteLine($"Gold : {Gold}");
         }
     }
@@ -320,7 +320,7 @@ namespace Team21Project
         public void LevelUp(int getExp)
         {
             Current_Exp += getExp;
-            Console.WriteLine($"{Name}이(가) {getExp}를 획득 했습니다.");
+            Console.WriteLine($"{Name}이(가) 경험치{getExp}를 획득 했습니다. {Current_Exp} / {Max_Exp}");
             if (Current_Exp >= Max_Exp)
             {
                 Console.WriteLine($"{Name}이(가) 레벨업 했습니다. {Level} -> {Level + 1}");
@@ -401,8 +401,8 @@ namespace Team21Project
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Current_Health}");
-            Console.WriteLine($"마나 : {Current_MP}");
+            Console.WriteLine($"체력 : {Current_Health} / {Max_Health}");
+            Console.WriteLine($"마나 : {Current_MP} / {Max_Mp}");
             Console.WriteLine($"Gold : {Gold}");
         }
     }
