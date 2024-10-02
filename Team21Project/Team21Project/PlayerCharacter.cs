@@ -15,10 +15,13 @@ namespace Team21Project
         public Inventory Inventory { get; set; }       
         void TakeDamage(int damge);
         public void ShowStatus();
+        public void LevelUp();
     }
 
     public class Warrior : IPlayerCharacter
     {
+        public int Max_Exp { get; set; }
+        public int Current_Exp { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
         public string Job { get; set; }
@@ -31,6 +34,8 @@ namespace Team21Project
 
         public Warrior(string name)
         {
+            Max_Exp = 50;
+            Current_Exp = 0;
             Level = 1;
             Name = name;
             Job = "전사";
@@ -40,6 +45,17 @@ namespace Team21Project
             Current_Health = 100;
             Gold = 1500;
             Inventory = new Inventory();
+        }
+
+        public void LevelUp()
+        {
+            if (Current_Exp >= Max_Exp)
+            {
+                Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
+                Level += 1;
+                Current_Exp = 0;
+                Max_Exp = Max_Exp * 2;
+            }
         }
 
         public void TakeDamage(int damage)
@@ -88,6 +104,8 @@ namespace Team21Project
 
     public class Thief : IPlayerCharacter
     {
+        public int Max_Exp { get; set; }
+        public int Current_Exp { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
         public string Job { get; set; }
@@ -100,6 +118,8 @@ namespace Team21Project
 
         public Thief(string name)
         {
+            Max_Exp = 50;
+            Current_Exp = 0;
             Level = 1;
             Name = name;
             Job = "도적";
@@ -109,6 +129,17 @@ namespace Team21Project
             Current_Health = 100;
             Gold = 1500;
             Inventory = new Inventory();
+        }
+
+        public void LevelUp()
+        {
+            if (Current_Exp >= Max_Exp)
+            {
+                Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
+                Level += 1;
+                Current_Exp = 0;
+                Max_Exp = Max_Exp * 2;
+            }
         }
 
         public void TakeDamage(int damage)
@@ -150,8 +181,6 @@ namespace Team21Project
 
         public void ShowStatus()
         {
-            
-            
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"{Name} {{ {Job} }}");
             Console.WriteLine($"공격력 : {Attack}");
@@ -163,6 +192,8 @@ namespace Team21Project
 
     public class Archer : IPlayerCharacter
     {
+        public int Max_Exp { get; set; }
+        public int Current_Exp { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
         public string Job { get; set; }
@@ -175,6 +206,8 @@ namespace Team21Project
 
         public Archer(string name)
         {
+            Max_Exp = 50;
+            Current_Exp = 0;
             Level = 1;
             Name = name;
             Job = "궁수";
@@ -184,6 +217,17 @@ namespace Team21Project
             Current_Health = 100;
             Gold = 1500;
             Inventory = new Inventory();
+        }
+
+        public void LevelUp()
+        {
+            if (Current_Exp >= Max_Exp)
+            {
+                Console.WriteLine($"플레이어가 레벨업 했습니다. {Level} -> {Level + 1}");
+                Level += 1;
+                Current_Exp = 0;
+                Max_Exp = Max_Exp * 2;
+            }
         }
 
         public void TakeDamage(int damage)
