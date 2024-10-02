@@ -6,18 +6,25 @@
         Armor,
         Potion
     }
+    public enum JobItemType
+    {
+        Wrroioritem,
+        Thiefitem,
+        Archeritem
+    }
 
     public class Item
-    {
+    {        
         public string Name { get; set; }
         public string Desc { get; set; }
         public int AttackBouns { get; set; }
         public int DefenseBouns { get; set; }
         public int Price { get; set; }
         public ItemType ItemType { get; set; }
+        public JobItemType JobItemType { get; set; }
         public bool IsEquipped { get; set; }
 
-        public Item(string name, string desc, int attackBouns, int defenseBouns, int price, ItemType itemType)
+        public Item(string name, int attackBouns, int defenseBouns, string desc, int price, ItemType itemType, JobItemType jobItemType)
         {
             Name = name;
             Desc = desc;
@@ -25,8 +32,10 @@
             DefenseBouns = defenseBouns;
             Price = price;
             ItemType = itemType;
+            JobItemType = jobItemType;
             IsEquipped = false;
         }
+        
 
         public void Used(int Heal, IPlayerCharacter character)
         {
@@ -37,7 +46,21 @@
         public string GetItemInfo()
         {
             string equippedStatus = IsEquipped ? "[E]" : "";
-            return $"- {equippedStatus}{Name}   | {Desc}";
+            return $"- {equippedStatus} {ItemInfoText()}";
+        }
+        public string ItemInfoText()
+        {
+            string text = "";
+
+            if (ItemType == ItemType.Weapon)
+            {
+                text = $" {Name} | 공격력 [+{AttackBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";
+            }
+            else if (ItemType == ItemType.Armor)
+            {
+                text = $" {Name} | 방어력 [+{DefenseBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";          
+            }
+            return text;
         }
     }
 }
