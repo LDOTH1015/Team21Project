@@ -8,9 +8,12 @@ namespace Team21Project
         static IPlayerCharacter player;
         static string playerName;
         static Inventory inventory = new Inventory();//
+        static List<Quest> quests = new List<Quest>();
+        static Quest questSystem = new Quest();
         
         static void Main(string[] args)
         {
+            questSystem.InsertQuest(quests);
             PlayerNameSettingUI();
             PlayerJobSettingUI();
             GameMainUI();
@@ -30,7 +33,8 @@ namespace Team21Project
             Console.Write(">>");
             playerName = Console.ReadLine();
             Console.WriteLine($"플레이어의 이름은 \"{playerName}\" 입니다");
-            Console.ReadLine();
+            Console.WriteLine("다음으로 넘어가시려면 아무키나 입력해주세요.");
+            Console.ReadKey();
         }
         /// <summary>
         /// 게임시작화면2 - 플레이어직업설정
@@ -63,8 +67,10 @@ namespace Team21Project
                 case 3: player = new Archer(playerName); break;
             }
             Console.WriteLine($"플레이어의 직업은 \"{player.Job}\" 입니다");
-            Console.ReadLine();
+            Console.WriteLine("다음으로 넘어가시려면 아무키나 입력해주세요.");
+            Console.ReadKey();
         }
+        
         /// <summary>
         /// 게임메인화면
         /// </summary>
@@ -81,11 +87,12 @@ namespace Team21Project
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
             Console.WriteLine("4. 전투 시작");
+            Console.WriteLine("5. 퀘스트");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            int result = CheckInput(1, 4);
+            int result = CheckInput(1, 5);
 
             switch (result)            
             {
@@ -100,7 +107,10 @@ namespace Team21Project
                     break;
                 case 4:
                     DungeonUI();
-                    break;               
+                    break;
+                case 5:
+                    questSystem.ShowQuest(quests);
+                    break;
                 default:
                     Console.WriteLine("잘못된 입력입니다");
                     Console.ReadKey();

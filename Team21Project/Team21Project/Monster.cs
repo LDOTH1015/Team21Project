@@ -41,10 +41,35 @@ namespace Team21Project
             {
                 Hp = 0;
                 Console.WriteLine($"{Name}이(가) 쓰러졌습니다!");
+                IsDead = true;
             }
             else
             {
                 Console.WriteLine($"{Name}이(가) {damage}의 피해를 입었습니다. 남은 HP: {Hp}");
+            }
+        }
+
+        public class Minion : Monster
+        {
+            public Minion() : base("미니언", 2, 15, 3, 4) // 이름, 레벨, HP, 공격력, 경험치
+            {
+
+            }
+        }
+
+        public class Voidling : Monster
+        {
+            public Voidling() : base("공허충", 3, 10, 5, 6) // 이름, 레벨, HP, 공격력, 경험치
+            {
+
+            }
+        }
+
+        public class CannonMinion : Monster
+        {
+            public CannonMinion() : base("대포미니언", 5, 25, 5, 10) // 이름, 레벨, HP, 공격력, 경험치
+            {
+
             }
         }
 
@@ -66,7 +91,7 @@ namespace Team21Project
 
         public class Ork : Monster
         {
-            public Ork() : base("오크", 8, 50, 10, 15)
+            public Ork() : base("오크", 6, 50, 10, 15)
             {
 
             }
