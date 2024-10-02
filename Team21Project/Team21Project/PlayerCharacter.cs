@@ -16,7 +16,7 @@ namespace Team21Project
         void TakeDamage(int damge);
         public void ShowStatus();
         public void LevelUp();
-        public int SkillDamage()
+        public int SkillDamage();
     }
 
     public class Warrior : IPlayerCharacter

@@ -8,9 +8,12 @@ namespace Team21Project
         static IPlayerCharacter player;
         static string playerName;
         static Inventory inventory = new Inventory();//
+        static List<Quest> quests = new List<Quest>();
+        static Quest questSystem = new Quest();
         
         static void Main(string[] args)
         {
+            questSystem.InsertQuest(quests);
             PlayerNameSettingUI();
             PlayerJobSettingUI();
             GameMainUI();
@@ -84,11 +87,12 @@ namespace Team21Project
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
             Console.WriteLine("4. 전투 시작");
+            Console.WriteLine("5. 퀘스트");
             Console.WriteLine("");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
 
-            int result = CheckInput(1, 4);
+            int result = CheckInput(1, 5);
 
             switch (result)            
             {
@@ -103,7 +107,10 @@ namespace Team21Project
                     break;
                 case 4:
                     DungeonUI();
-                    break;               
+                    break;
+                case 5:
+                    questSystem.ShowQuest(quests);
+                    break;
                 default:
                     Console.WriteLine("잘못된 입력입니다");
                     Console.ReadKey();

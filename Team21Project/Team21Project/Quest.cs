@@ -12,6 +12,10 @@
             public int guestNum { get; set; }
             public int killTagetNum { get; set; }
             public List<string> compensation { get; set; }
+            public Quest()
+            {
+
+            }
 
             public Quest(string questName, string questDescription, string questTaget, int guestNum, int killTagetNum, List<string> compensation)
             {
@@ -33,10 +37,11 @@
                 quests.Add(new Quest("", "", "", 5, 0, new List<string> { "쓸만한 방패", "5G" }));
                 quests.Add(new Quest("", "", "", 5, 0, new List<string> { "쓸만한 방패", "5G" }));
             }
-            public void showQuest(List<Quest> quests)
+            public void ShowQuest(List<Quest> quests)
             {
                 do
                 {
+                    Console.Clear();
                     Console.WriteLine("Quest!!");
                     Console.WriteLine("");
                     for (int i = 0; i < quests.Count; i++)
@@ -48,13 +53,14 @@
                     result = util.AskAnswer();
                     if(result != 0 && result < quests.Count)
                     {
-                        showQuestDetail(quests[result - 1]);
+                        ShowQuestDetail(quests[result - 1]);
                     }
                 }while (result == 2);
             }
 
-            public void showQuestDetail(Quest quest)
+            public void ShowQuestDetail(Quest quest)
             {
+                Console.Clear();
                 Console.WriteLine("Quest!!");
                 Console.WriteLine("");
                 Console.WriteLine("{0}", quest.questName);
