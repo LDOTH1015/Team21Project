@@ -31,13 +31,13 @@
             {
                 quests.Add(new Quest("마을을 위협하는 미니언 처치", "이봐! 마을 근처에 미니언들이 너무 많아졌다고 생각하지 않나?\n" +
                     "마을주민들의 안전을 위해서라도 저것들 수를 좀 줄여야 한다고!\n" +
-                    "모험가인 자네가 좀 처치해주게!", "미니언", 5, 0, new List<string> {"쓸만한 방패", "5G" }));
+                    "모험가인 자네가 좀 처치해주게!", "미니언", 5, 0, new List<string> { "쓸만한 방패", "5G" }));
                 quests.Add(new Quest("", "", "", 5, 0, new List<string> { "쓸만한 방패", "5G" }));
                 quests.Add(new Quest("", "", "", 5, 0, new List<string> { "쓸만한 방패", "5G" }));
                 quests.Add(new Quest("", "", "", 5, 0, new List<string> { "쓸만한 방패", "5G" }));
                 quests.Add(new Quest("", "", "", 5, 0, new List<string> { "쓸만한 방패", "5G" }));
             }
-            public void ShowQuest(List<Quest> quests)
+            public void ShowQuest(List<Quest> quests, IPlayerCharacter player)
             {
                 do
                 {
@@ -51,14 +51,18 @@
                     Console.WriteLine("");
                     Console.WriteLine("0. 나가기");
                     result = util.AskAnswer();
-                    if(result != 0 && result < quests.Count)
+                    if (result != 0 && result < quests.Count)
                     {
-                        ShowQuestDetail(quests[result - 1]);
+                        ShowQuestDetail(quests[result - 1], player);
                     }
-                }while (result == 2);
+                    else if (result != 0)
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                    }
+                } while (result == 0);
             }
 
-            public void ShowQuestDetail(Quest quest)
+            public void ShowQuestDetail(Quest quest, IPlayerCharacter player)
             {
                 Console.Clear();
                 Console.WriteLine("Quest!!");
@@ -77,7 +81,20 @@
                 Console.WriteLine("");
                 Console.WriteLine("1. 수락");
                 Console.WriteLine("2. 거절");
-                result = util.AskAnswer();
+                Console.WriteLine("");
+                do
+                {
+                    result = util.AskAnswer();
+                    if (result == 1)
+                    {
+                        
+                    } else if (result != 2)
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                    }
+                } while (result != 1 && result != 2);
+
+
             }
 
         }
