@@ -30,6 +30,7 @@ namespace Team21Project
             Console.Write(">>");
             playerName = Console.ReadLine();
             Console.WriteLine($"플레이어의 이름은 \"{playerName}\" 입니다");
+            Console.WriteLine("다음으로 넘어가시려면 아무키나 입력해주세요.");
             Console.ReadLine();
         }
         /// <summary>
@@ -63,8 +64,10 @@ namespace Team21Project
                 case 3: player = new Archer(playerName); break;
             }
             Console.WriteLine($"플레이어의 직업은 \"{player.Job}\" 입니다");
+            Console.WriteLine("다음으로 넘어가시려면 아무키나 입력해주세요.");
             Console.ReadLine();
         }
+        
         /// <summary>
         /// 게임메인화면
         /// </summary>

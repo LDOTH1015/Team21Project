@@ -21,6 +21,13 @@
             }
             while (killMonster != monsters.Count || player.Current_Health != 0)
             {
+                Console.Write("던전에 입장중 입니다");
+                for (int i = 0; i < 3; i++)
+                {
+                    Thread.Sleep(500); // Pause for 500 milliseconds
+                    Console.Write("."); // Print a dot to simulate loading
+                    Console.Beep();
+                }
                 Console.Clear();
                 Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
                 Console.WriteLine("");
@@ -36,7 +43,7 @@
                 Console.WriteLine("");
                 Console.WriteLine("1. 공격");
                 Console.WriteLine("");
-                Console.WriteLine("원하시는 행동을 입력해주세요");
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
                 answer = Console.ReadLine();
                 switch (int.Parse(answer))
                 {
