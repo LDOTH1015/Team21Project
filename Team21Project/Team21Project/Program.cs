@@ -11,23 +11,21 @@ namespace Team21Project
         static string playerName;
         static Inventory inventory = new Inventory();//
         static List<Quest> quests = new List<Quest>();
-        static Quest questSystem = new Quest();
-        
-        static Inventory inventory = new Inventory();
+        static Quest questSystem = new Quest();      
         public static List<Item> itemDb = new List<Item>()
         {
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.Wrroioritem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.Wrroioritem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.Wrroioritem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.Thiefitem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.Thiefitem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.Thiefitem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.Thiefitem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.Archeritem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.Archeritem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.Archeritem),
-            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.Archeritem),
-            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.Wrroioritem)
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.WarriorItem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.WarriorItem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.WarriorItem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.WarriorItem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.ThiefItem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.ThiefItem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.ThiefItem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.ThiefItem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Weapon, JobItemType.ArcherItem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Weapon, JobItemType.ArcherItem),
+            new Item("TestItem",1,2,"테스트",1000,ItemType.Armor, JobItemType.ArcherItem),
+            new Item("TestItem",1,2,"테스트",2000,ItemType.Armor, JobItemType.ArcherItem) 
         };
 
         //static Shop shop = new Shop();//
@@ -78,7 +76,7 @@ namespace Team21Project
             switch (result)
             {
                 case 1:
-                    player = new Wrroior(playerName);
+                    player = new Warrior(playerName);
                     break;
                 case 2:
                     player = new Thief(playerName);
