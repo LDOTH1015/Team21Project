@@ -16,6 +16,7 @@ namespace Team21Project
         void TakeDamage(int damge);
         public void ShowStatus();
         public void LevelUp();
+        public int SkillDamage()
     }
 
     public class Warrior : IPlayerCharacter
@@ -74,7 +75,7 @@ namespace Team21Project
             }
         }
 
-        public void SkillDamage()
+        public int SkillDamage()
         {
             Random random = new Random();
             int randSkill = random.Next(0, 100);
@@ -88,7 +89,8 @@ namespace Team21Project
             {
                 skillDamage = Attack * 3;
                 Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용하여 {skillDamage}의 피해를 입혔습니다.");
-            }            
+            }
+            return skillDamage;
         }
 
         public void ShowStatus()
@@ -158,7 +160,7 @@ namespace Team21Project
             }
         }
 
-        public void SkillSteal()
+        public int SkillDamage()
         {
             Random random = new Random();
             int randSkill = random.Next(0, 100);
@@ -176,7 +178,7 @@ namespace Team21Project
                 Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용하여 {stealGold} G를 훔쳤습니다.");
                 Gold += stealGold;
             }
-            
+            return skillDamage;
         }
 
         public void ShowStatus()
@@ -246,7 +248,7 @@ namespace Team21Project
             }
         }
 
-        public void SkillDamage()
+        public int SkillDamage()
         {
             Random random = new Random();
             int randSkill = random.Next(0, 100);
@@ -261,6 +263,7 @@ namespace Team21Project
                 skillDamage = Attack * 3;
                 Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용하여 {skillDamage}의 피해를 입혔습니다.");
             }
+            return skillDamage;
         }
 
         public void ShowStatus()

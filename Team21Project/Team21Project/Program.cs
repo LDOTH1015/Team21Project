@@ -31,7 +31,7 @@ namespace Team21Project
             playerName = Console.ReadLine();
             Console.WriteLine($"플레이어의 이름은 \"{playerName}\" 입니다");
             Console.WriteLine("다음으로 넘어가시려면 아무키나 입력해주세요.");
-            Console.ReadLine();
+            Console.ReadKey();
         }
         /// <summary>
         /// 게임시작화면2 - 플레이어직업설정
@@ -65,7 +65,7 @@ namespace Team21Project
             }
             Console.WriteLine($"플레이어의 직업은 \"{player.Job}\" 입니다");
             Console.WriteLine("다음으로 넘어가시려면 아무키나 입력해주세요.");
-            Console.ReadLine();
+            Console.ReadKey();
         }
         
         /// <summary>

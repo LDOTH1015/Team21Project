@@ -28,7 +28,7 @@
             IsEquipped = false;
         }
 
-        public void Uesed(int Heal, IPlayerCharacter character)
+        public void Used(int Heal, IPlayerCharacter character)
         {
             Console.WriteLine($"{character.Name}의 체력이 회복 되었습니다. " +
                 $"{character.Current_Health} -> {character.Current_Health + Heal}");
