@@ -12,12 +12,12 @@ namespace Team21Project
         int Max_Health { get; set; }
         int Current_Health {  get; set; }
         int Gold { get; set; }
-        public Inventory Inventory { get; set; }
+        public Inventory Inventory { get; set; }       
         void TakeDamage(int damge);
         public void ShowStatus();
     }
 
-    public class Wrroior : IPlayerCharacter
+    public class Warrior : IPlayerCharacter
     {
         public int Level { get; set; }
         public string Name { get; set; }
@@ -29,7 +29,7 @@ namespace Team21Project
         public int Gold { get; set; }
         public Inventory Inventory { get; set; }
 
-        public Wrroior(string name)
+        public Warrior(string name)
         {
             Level = 1;
             Name = name;
@@ -58,6 +58,23 @@ namespace Team21Project
             }
         }
 
+        public void SkillDamage()
+        {
+            Random random = new Random();
+            int randSkill = random.Next(0, 100);
+            int skillDamage;
+            if (randSkill < 30) // 30% 확률로 4배 발동
+            {
+                skillDamage = Attack * 4;
+                Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용중 치명적인 힘이 스며들어 {skillDamage}의 피해를 입혔습니다.");
+            }
+            else
+            {
+                skillDamage = Attack * 3;
+                Console.WriteLine($"{Name}이(가) 전사 스킬 '파워 스트라이크'를 사용하여 {skillDamage}의 피해를 입혔습니다.");
+            }            
+        }
+
         public void ShowStatus()
         {
             Console.WriteLine($"\nLV. {Level:D2}");
@@ -79,8 +96,6 @@ namespace Team21Project
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
         public int Gold { get; set; }
-        public Item EquippedWeapon { get; set; }
-        public Item EquippedArmor { get; set; }
         public Inventory Inventory { get; set; }
 
         public Thief(string name)
@@ -112,15 +127,35 @@ namespace Team21Project
             }
         }
 
+        public void SkillSteal()
+        {
+            Random random = new Random();
+            int randSkill = random.Next(0, 100);
+            int stealGold = 20;
+            int skillDamage;
+            if(randSkill < 30)
+            {
+                skillDamage = Attack * 2;
+                Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용중 행운이 발동하여 평소보다 많은 {stealGold*2} G를 훔쳤습니다.");
+                Gold += stealGold;
+            }
+            else
+            {
+                skillDamage = Attack * 2;
+                Console.WriteLine($"{Name}이(가) 도적 스킬 '스틸'을 사용하여 {stealGold} G를 훔쳤습니다.");
+                Gold += stealGold;
+            }
+            
+        }
+
         public void ShowStatus()
         {
-            int equippedAtk = EquippedWeapon != null ? EquippedWeapon.AttackBouns : 0;
-            int equippedDef = EquippedArmor != null ? EquippedArmor.DefenseBouns : 0;
-
+            
+            
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"{Name} {{ {Job} }}");
-            Console.WriteLine($"공격력 : {Attack} {(equippedAtk > 0 ? $"(+{equippedAtk})" : "")}");
-            Console.WriteLine($"방어력 : {Defense} {(equippedDef > 0 ? $"(+{equippedDef})" : "")}");
+            Console.WriteLine($"공격력 : {Attack}");
+            Console.WriteLine($"방어력 : {Defense}");
             Console.WriteLine($"체력 : {Max_Health}");
             Console.WriteLine($"Gold : {Gold}");
         }
@@ -136,8 +171,6 @@ namespace Team21Project
         public int Max_Health { get; set; }
         public int Current_Health { get; set; }
         public int Gold { get; set; }
-        public Item EquippedWeapon { get; set; }
-        public Item EquippedArmor { get; set; }
         public Inventory Inventory { get; set; }
 
         public Archer(string name)
@@ -169,15 +202,30 @@ namespace Team21Project
             }
         }
 
+        public void SkillDamage()
+        {
+            Random random = new Random();
+            int randSkill = random.Next(0, 100);
+            int skillDamage;
+            if (randSkill < 30) // 30% 확률로 4배 발동
+            {
+                skillDamage = Attack * 4;
+                Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용중 바람의 힘이 깃들어 {skillDamage}의 피해를 입혔습니다.");
+            }
+            else
+            {
+                skillDamage = Attack * 3;
+                Console.WriteLine($"{Name}이(가) 궁수 스킬 '스나이핑'을 사용하여 {skillDamage}의 피해를 입혔습니다.");
+            }
+        }
+
         public void ShowStatus()
         {
-            int equippedAtk = EquippedWeapon != null ? EquippedWeapon.AttackBouns : 0;
-            int equippedDef = EquippedArmor != null ? EquippedArmor.DefenseBouns : 0;
 
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"{Name} {{ {Job} }}");
-            Console.WriteLine($"공격력 : {Attack} {(equippedAtk > 0 ? $"(+{equippedAtk})" : "")}");
-            Console.WriteLine($"방어력 : {Defense} {(equippedDef > 0 ? $"(+{equippedDef})" : "")}");
+            Console.WriteLine($"공격력 : {Attack}");
+            Console.WriteLine($"방어력 : {Defense}");
             Console.WriteLine($"체력 : {Max_Health}");
             Console.WriteLine($"Gold : {Gold}");
         }
