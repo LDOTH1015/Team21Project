@@ -8,9 +8,10 @@
     }
     public enum JobItemType
     {
-        Wrroioritem,
+        Warrioritem,
         Thiefitem,
-        Archeritem
+        Archeritem,
+        All
     }
 
     public class Item
