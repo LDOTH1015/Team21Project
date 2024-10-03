@@ -11,7 +11,7 @@
         WarriorItem,
         ThiefItem,
         ArcherItem,
-        All                            
+        All
     }
 
     public class Item

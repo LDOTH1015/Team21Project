@@ -24,7 +24,7 @@ namespace Team21Project
             {
                 for (int i = 0; i < Items.Count; i++)
                 {
-                    Console.WriteLine($"{Items[i].GetItemInfo()}");
+                    Console.WriteLine($"{i+1} {Items[i].GetItemInfo()}");
                 }
             }
             else

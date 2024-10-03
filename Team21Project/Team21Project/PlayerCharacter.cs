@@ -55,7 +55,7 @@ namespace Team21Project
             Current_Health = 100;
             Max_Mp = 50;
             Current_MP = 50;
-            Gold = 1500;
+            Gold = 10000;
             IsDead = false;
             Inventory = new Inventory();
             JobType = "WarriorItem";
@@ -147,12 +147,12 @@ namespace Team21Project
         {
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"현재 Exp : {Current_Exp} / {Max_Exp}");
-            Console.WriteLine($"{Name} {{ {Job} }}");
+            Console.WriteLine($"{Name} | [ {Job} ]");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Current_Health} / {Max_Health}");
-            Console.WriteLine($"마나 : {Current_MP} / {Max_Mp}");
-            Console.WriteLine($"Gold : {Gold}");
+            Console.WriteLine($"체력   : {Current_Health} | {Max_Health}");
+            Console.WriteLine($"마나   : {Current_MP} | {Max_Mp}");
+            Console.WriteLine($"Gold   : {Gold}");
         }
     }
 
