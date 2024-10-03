@@ -187,7 +187,7 @@ namespace Team21Project
             Current_Health = 100;
             Max_Mp = 70;
             Current_MP = 70;
-            Gold = 1500;
+            Gold = 10000;
             Inventory = new Inventory();
             JobType = "ThiefItem";
         }
