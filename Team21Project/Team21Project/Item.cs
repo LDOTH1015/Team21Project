@@ -11,7 +11,7 @@
         WarriorItem,
         ThiefItem,
         ArcherItem,
-        All                            
+        All
     }
 
     public class Item
@@ -46,8 +46,8 @@
 
         public string GetItemInfo()
         {
-            string equippedStatus = IsEquipped ? "[E]" : "";
-            return $"- {equippedStatus} {ItemInfoText()}";
+            string equippedStatus = IsEquipped ? "-[E]" : "-";
+            return $"{equippedStatus} {ItemInfoText()}";
         }
         public string ItemInfoText()
         {
