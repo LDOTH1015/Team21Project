@@ -39,13 +39,17 @@
                 do
                 {
                     Console.Clear();
-                    Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("■■■■■■■■■■ Battle!! ■■■■■■■■■■");
+                    Console.ResetColor();
                     Console.WriteLine("");
                     for (int i = 0; i < monsters.Count; i++)
                     {
                         if (monsters[i].IsDead)
                         {
+                            Console.ForegroundColor = ConsoleColor.Gray;
                             Console.WriteLine("Lv.{0} {1} Dead", monsters[i].Level, monsters[i].Name);
+                            Console.ResetColor();
                         } else
                         {
                             Console.WriteLine("Lv.{0} {1} HP {2}", monsters[i].Level, monsters[i].Name, monsters[i].Hp);
@@ -53,10 +57,14 @@
                     }
                     Console.WriteLine("");
                     Console.WriteLine("");
+                    Console.WriteLine("===================================================");
+                    Console.WriteLine("");
                     Console.WriteLine("[내정보]");
                     Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
                     Console.WriteLine("HP {0} / {1}", player.Max_Health, player.Current_Health);
                     Console.WriteLine("MP {0} / {1}", player.Max_Mp, player.Current_MP);
+                    Console.WriteLine("");
+                    Console.WriteLine("===================================================");
                     Console.WriteLine("");
                     Console.WriteLine("1. 공격");
                     Console.WriteLine("2. 스킬 공격");
@@ -82,12 +90,21 @@
                     if (!monsters[i].IsDead && !player.IsDead)
                     {
                         Console.Clear();
-                        Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("■■■■■■■■■■ Battle!! ■■■■■■■■■■");
+                        Console.ResetColor();
                         Console.WriteLine("");
                         Console.WriteLine("Lv.{0} {1}의 공격!", monsters[i].Level, monsters[i].Name);
                         player.TakeDamage(monsters[i].Attack);
+                        Console.WriteLine("");
+                        Console.WriteLine("===================================================");
+                        Console.WriteLine("");
+                        Console.WriteLine("[내정보]");
                         Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
                         Console.WriteLine("HP {0} -> {1}", player.Max_Health, player.Current_Health);
+                        Console.WriteLine("MP {0} -> {1}", player.Max_Mp, player.Current_MP);
+                        Console.WriteLine("");
+                        Console.WriteLine("===================================================");
                         Console.WriteLine("");
                         Console.WriteLine("아무키나 눌러주세요.");
                         Console.ReadKey();
@@ -104,27 +121,72 @@
         public static void BattleEnd(IPlayerCharacter player, List<Monster> monsters)
         {
             Console.Clear();
-            Console.WriteLine("Battle!! - Result", ConsoleColor.DarkRed);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Battle!! - Result");
+            Console.ResetColor();
             Console.WriteLine("");
             int gold = 0;
             if (!player.IsDead)
             {
-                Console.WriteLine("Victory!!", ConsoleColor.DarkGreen);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("■■■■■■■■■■ Victory!! ■■■■■■■■■■", ConsoleColor.DarkGreen);
+                Console.ResetColor();
                 Console.WriteLine("");
                 Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다.", monsters.Count);
+                Console.WriteLine("");
+                Console.WriteLine("===================================================");
                 Console.WriteLine("");
                 Console.WriteLine("[내정보]");
                 Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
                 Console.WriteLine("HP {0} -> {1}", player.Max_Health, player.Current_Health);
+                Console.WriteLine("MP {0} -> {1}", player.Max_Mp, player.Current_MP);
                 Console.WriteLine("");
-                Console.WriteLine("- 보상 -");
+                Console.WriteLine("===================================================");
+                Console.WriteLine("");
                 for (int i = 0; i < monsters.Count; i++)
                 {
                     gold += monsters[i].Level * 50;
                     player.LevelUp(monsters[i].Exp);
+                    for (int j = 0; j < player.quest.Count; j++)
+                    {
+                        if (player.quest[j].questTaget == monsters[i].Name)
+                        {
+                            if (player.quest[j].killTagetNum != player.quest[j].questNum)
+                            {
+                                player.quest[j].killTagetNum++;
+                            }
+                        }
+
+                    }
                 }
+                for (int j = 0; j < player.quest.Count; j++)
+                {
+                    if (player.quest[j].killTagetNum == player.quest[j].questNum)
+                    {
+                        Console.WriteLine("- 퀘스트 완료 보상 -");
+                        for(int k = 0; k < player.quest[j].compensation.Count; k++)
+                        {
+                            Console.WriteLine(player.quest[j].compensation[k]);
+                            switch (player.quest[j].compensation[k])
+                            {
+                                case "회복포션": 
+                                    player.Inventory.Items.Add(new Item("회복포션", 0, 0, "체력을 50 회복 시켜준다.", 0, ItemType.Potion, JobItemType.All)); 
+                                    break;
+                            }
+                            if (player.quest[j].compensation[k].EndsWith("G"))
+                            {
+                                player.Gold += int.Parse(player.quest[j].compensation[k].Substring(0, player.quest[j].compensation[k].Length - 1));
+                            } 
+                        }
+                        player.quest.RemoveAt(j);
+                    }
+                }
+                Console.WriteLine("");
+                Console.WriteLine("- 보상 -");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\t{0}G", gold);
                 player.Gold += gold;
+                Console.ResetColor();
                 Console.WriteLine("\t회복포션");
                 player.Inventory.Items.Add(new Item("회복포션",0,0, "체력을 50 회복 시켜준다.", 0,ItemType.Potion, JobItemType.All));
                 Console.WriteLine("");
@@ -133,11 +195,18 @@
             }
             else
             {
-                Console.WriteLine("You Lose!!", ConsoleColor.Red);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("■■■■■■■■■■ You Lose!! ■■■■■■■■■■", ConsoleColor.Red);
+                Console.ResetColor();
+                Console.WriteLine("");
+                Console.WriteLine("===================================================");
                 Console.WriteLine("");
                 Console.WriteLine("[내정보]");
                 Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
                 Console.WriteLine("HP {0} -> {1}", player.Max_Health, player.Current_Health);
+                Console.WriteLine("MP {0} -> {1}", player.Max_Mp, player.Current_MP);
+                Console.WriteLine("");
+                Console.WriteLine("===================================================");
                 Console.WriteLine("");
                 Console.WriteLine("아무키나 입력해주세요");
                 Console.ReadKey();
@@ -147,17 +216,34 @@
         public static int Attck(IPlayerCharacter player, List<Monster> monsters, bool skill)
         {
             Console.Clear();
-            Console.WriteLine("Battle!!", ConsoleColor.DarkRed);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("■■■■■■■■■■ Battle!! ■■■■■■■■■■", ConsoleColor.DarkRed);
+            Console.ResetColor();
             Console.WriteLine("");
             for (int i = 0; i < monsters.Count; i++)
             {
-                Console.WriteLine("{0} Lv.{1} {2} HP {3}", i + 1, monsters[i].Level, monsters[i].Name, monsters[i].Hp);
+                if (monsters[i].IsDead)
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("{0} Lv.{1} {2} Dead", i + 1, monsters[i].Level, monsters[i].Name);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine("{0} Lv.{1} {2} HP {3}", i + 1, monsters[i].Level, monsters[i].Name, monsters[i].Hp);
+                }
+                
             }
             Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("===================================================");
             Console.WriteLine("");
             Console.WriteLine("[내정보]");
             Console.WriteLine("Lv.{0} {1}", player.Level, player.Name);
             Console.WriteLine("HP {0} / {1}", player.Max_Health, player.Current_Health);
+            Console.WriteLine("MP {0} -> {1}", player.Max_Mp, player.Current_MP);
+            Console.WriteLine("");
+            Console.WriteLine("===================================================");
             Console.WriteLine("");
             Console.WriteLine("0. 취소");
             Console.WriteLine("");

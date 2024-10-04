@@ -17,6 +17,7 @@ namespace Team21Project
         int Gold { get; set; }
         public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }
+        public List<Quest> quest { get; set; }
         void TakeDamage(int damge);
         public void ShowStatus();
         public void LevelUp(int getExp);
@@ -41,6 +42,7 @@ namespace Team21Project
         public int Gold { get; set; }
         public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }
+        public List<Quest> quest { get; set; }
 
         public Warrior(string name)
         {
@@ -58,6 +60,7 @@ namespace Team21Project
             Gold = 10000;
             IsDead = false;
             Inventory = new Inventory();
+            quest = new List<Quest>();
             JobType = "WarriorItem";
         }
 
@@ -175,6 +178,7 @@ namespace Team21Project
         public int Gold { get; set; }
         public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }
+        public List<Quest> quest { get; set; }
 
         public Thief(string name)
         {
@@ -191,6 +195,7 @@ namespace Team21Project
             Current_MP = 70;
             Gold = 10000;
             Inventory = new Inventory();
+            quest = new List<Quest>();
             JobType = "ThiefItem";
         }
 
@@ -308,6 +313,7 @@ namespace Team21Project
         public int Gold { get; set; }
         public bool IsDead { get; set; }
         public Inventory Inventory { get; set; }
+        public List<Quest> quest { get; set; }
 
         public Archer(string name)
         {
@@ -325,6 +331,7 @@ namespace Team21Project
             Gold = 1500;
             IsDead = false;
             Inventory = new Inventory();
+            quest = new List<Quest>();
             JobType = "ArcherItem";
         }
 
