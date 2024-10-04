@@ -46,7 +46,7 @@
 
         public string GetItemInfo()
         {
-            string equippedStatus = IsEquipped ? "-[E]" : "-";
+            string equippedStatus = IsEquipped ? "[E]" : "";
             return $"{equippedStatus} {ItemInfoText()}";
         }
         public string ItemInfoText()
@@ -55,11 +55,11 @@
 
             if (ItemType == ItemType.Weapon)
             {
-                text = $" {Name} | 공격력 [+{AttackBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";
+                text = $"{Name} | 공격력 [+{AttackBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";
             }
             else if (ItemType == ItemType.Armor)
             {
-                text = $" {Name} | 방어력 [+{DefenseBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";          
+                text = $"{Name} | 방어력 [+{DefenseBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";          
             }
             return text;
         }

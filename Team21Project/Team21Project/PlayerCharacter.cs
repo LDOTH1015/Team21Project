@@ -72,7 +72,7 @@ namespace Team21Project
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
                 Max_Mp += Max_Mp;
-                Attack += Attack;
+                Attack += 2;
                 Max_Health += 50;
             }
         }
@@ -145,14 +145,16 @@ namespace Team21Project
 
         public void ShowStatus()
         {
+            int attackBouns = Inventory.EquippedWeapon != null ? Inventory.EquippedWeapon.AttackBouns : 0;
+            int defenseBouns = Inventory.EquippedArmor != null ? Inventory.EquippedArmor.DefenseBouns : 0;
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"현재 Exp : {Current_Exp} / {Max_Exp}");
-            Console.WriteLine($"{Name} | [ {Job} ]");
-            Console.WriteLine($"공격력 : {Attack}");
-            Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력   : {Current_Health} | {Max_Health}");
-            Console.WriteLine($"마나   : {Current_MP} | {Max_Mp}");
-            Console.WriteLine($"Gold   : {Gold}");
+            Console.WriteLine($"{Name} / [ {Job} ]");
+            Console.WriteLine($"공격력 : {Attack} {(attackBouns > 0 ? $"(+{attackBouns})" : "")}");
+            Console.WriteLine($"방어력 : {Defense} {(defenseBouns > 0 ? $"(+{defenseBouns})" : "")}");
+            Console.WriteLine($"체력   : {Current_Health} / {Max_Health}");
+            Console.WriteLine($"마나   : {Current_MP} / {Max_Mp}");
+            Console.WriteLine($"Gold   : {Gold}G");
         }
     }
 
@@ -203,7 +205,7 @@ namespace Team21Project
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
                 Max_Mp += Max_Mp;
-                Attack += Attack;
+                Attack += 2;
                 Max_Health += 50;
             }
         }
@@ -276,14 +278,16 @@ namespace Team21Project
 
         public void ShowStatus()
         {
+            int attackBouns = Inventory.EquippedWeapon != null ? Inventory.EquippedWeapon.AttackBouns : 0;
+            int defenseBouns = Inventory.EquippedArmor != null ? Inventory.EquippedArmor.DefenseBouns : 0;
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"현재 Exp : {Current_Exp} / {Max_Exp}");
-            Console.WriteLine($"{Name} {{ {Job} }}");
-            Console.WriteLine($"공격력 : {Attack}");
-            Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Current_Health} / {Max_Health}");
-            Console.WriteLine($"마나 : {Current_MP} / {Max_Mp}");
-            Console.WriteLine($"Gold : {Gold}");
+            Console.WriteLine($"{Name} / [ {Job} ]");
+            Console.WriteLine($"공격력 : {Attack} {(attackBouns > 0 ? $"(+{attackBouns})" : "")}");
+            Console.WriteLine($"방어력 : {Defense} {(defenseBouns > 0 ? $"(+{defenseBouns})" : "")}");
+            Console.WriteLine($"체력   : {Current_Health} / {Max_Health}");
+            Console.WriteLine($"마나   : {Current_MP} / {Max_Mp}");
+            Console.WriteLine($"Gold   : {Gold}G");
         }
     }
 
@@ -335,7 +339,7 @@ namespace Team21Project
                 Current_Exp = 0;
                 Max_Exp = Max_Exp * 2;
                 Max_Mp += Max_Mp;
-                Attack += Attack;
+                Attack += 2;
                 Max_Health += 50;
             }
         }
@@ -403,14 +407,16 @@ namespace Team21Project
 
         public void ShowStatus()
         {
+            int attackBouns = Inventory.EquippedWeapon != null ? Inventory.EquippedWeapon.AttackBouns : 0;
+            int defenseBouns = Inventory.EquippedArmor != null ? Inventory.EquippedArmor.DefenseBouns : 0;
             Console.WriteLine($"\nLV. {Level:D2}");
             Console.WriteLine($"현재 Exp : {Current_Exp} / {Max_Exp}");
-            Console.WriteLine($"{Name} {{ {Job} }}");
-            Console.WriteLine($"공격력 : {Attack}");
-            Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Current_Health} / {Max_Health}");
-            Console.WriteLine($"마나 : {Current_MP} / {Max_Mp}");
-            Console.WriteLine($"Gold : {Gold}");
+            Console.WriteLine($"{Name} / [ {Job} ]");
+            Console.WriteLine($"공격력 : {Attack} {(attackBouns > 0 ? $"(+{attackBouns})" : "")}");
+            Console.WriteLine($"방어력 : {Defense} {(defenseBouns > 0 ? $"(+{defenseBouns})" : "")}");
+            Console.WriteLine($"체력   : {Current_Health} / {Max_Health}");
+            Console.WriteLine($"마나   : {Current_MP} / {Max_Mp}");
+            Console.WriteLine($"Gold   : {Gold}G");
         }
     }
 }

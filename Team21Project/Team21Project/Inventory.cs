@@ -24,7 +24,7 @@ namespace Team21Project
             {
                 for (int i = 0; i < Items.Count; i++)
                 {
-                    Console.WriteLine($"{i+1} {Items[i].GetItemInfo()}");
+                    Console.WriteLine($"[ {i+1} ] {Items[i].GetItemInfo()}");
                 }
             }
             else
@@ -43,7 +43,9 @@ namespace Team21Project
                     character.Attack += items.AttackBouns;
                     character.Defense += items.DefenseBouns;
                     items.IsEquipped = true;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"{items.Name}을(를) 장착했습니다.");
+                    Console.ResetColor();
                     EquippedWeapon = items;
                 }
                 else if (!items.IsEquipped && items.ItemType == ItemType.Armor && EquippedArmor == null)
@@ -51,16 +53,22 @@ namespace Team21Project
                     character.Attack += items.AttackBouns;
                     character.Defense += items.DefenseBouns;
                     items.IsEquipped = true;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"{items.Name}을(를) 장착했습니다.");
+                    Console.ResetColor();
                     EquippedArmor = items;
                 }
                 else if (!items.IsEquipped && items.ItemType == ItemType.Weapon && EquippedWeapon != null)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("무기를 이미 장착중 입니다.");
+                    Console.ResetColor();
                 }
                 else if (!items.IsEquipped && items.ItemType == ItemType.Armor && EquippedArmor != null)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("방어구를 이미 장착중 입니다.");
+                    Console.ResetColor();
                 }
                 else if (items.IsEquipped)
                 {
@@ -75,7 +83,9 @@ namespace Team21Project
                     character.Attack -= items.AttackBouns;
                     character.Defense -= items.DefenseBouns;
                     items.IsEquipped = false;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"{items.Name}(을)를 해체했습니다.");
+                    Console.ResetColor();
                 }
             }
             else
