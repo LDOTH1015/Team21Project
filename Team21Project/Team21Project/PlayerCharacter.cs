@@ -328,7 +328,7 @@ namespace Team21Project
             Current_Health = 100;
             Max_Mp = 60;
             Current_MP = 60;
-            Gold = 1500;
+            Gold = 10000;
             IsDead = false;
             Inventory = new Inventory();
             quest = new List<Quest>();
