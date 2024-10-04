@@ -166,7 +166,12 @@
                         Console.WriteLine("- 퀘스트 완료 보상 -");
                         for(int k = 0; k < player.quest[j].compensation.Count; k++)
                         {
+                            if (player.quest[j].compensation[k].EndsWith("G"))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                            }
                             Console.WriteLine(player.quest[j].compensation[k]);
+                            Console.ResetColor();
                             switch (player.quest[j].compensation[k])
                             {
                                 case "회복포션": 
