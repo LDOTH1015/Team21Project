@@ -15,7 +15,7 @@
     }
 
     public class Item
-    {        
+    {
         public string Name { get; set; }
         public string Desc { get; set; }
         public int AttackBouns { get; set; }
@@ -36,12 +36,17 @@
             JobItemType = jobItemType;
             IsEquipped = false;
         }
-        
+
 
         public void Used(int Heal, IPlayerCharacter character)
         {
             Console.WriteLine($"{character.Name}의 체력이 회복 되었습니다. " +
-                $"{character.Current_Health} -> {character.Current_Health + Heal}");
+                $"{character.Current_Health} -> {(character.Current_Health + Heal >= 100 ? $"100" : character.Current_Health + Heal)}");
+            character.Current_Health += Heal;
+            if (character.Current_Health > 100)
+            {
+                character.Current_Health = 100;
+            }
         }
 
         public string GetItemInfo()
@@ -59,7 +64,11 @@
             }
             else if (ItemType == ItemType.Armor)
             {
-                text = $"{Name} | 방어력 [+{DefenseBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";          
+                text = $"{Name} | 방어력 [+{DefenseBouns}] | {Desc} | [{ItemType}] | [{JobItemType}]";
+            }
+            else
+            {
+                text = $"{Name} | 회복력 [+50] | [{ItemType}]";
             }
             return text;
         }

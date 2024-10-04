@@ -135,7 +135,7 @@ namespace Team21Project
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write("\n>>");
 
-                int result = CheckInput(1, 4);
+                int result = CheckInput(1, 5);
 
                 switch (result)
                 {

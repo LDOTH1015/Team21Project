@@ -47,18 +47,25 @@
                 {
                     string value = "";
                     value = quests[i].questName;
-                    for (int j = 0; j < player.quest.Count; j++)
+                    if (player.quest.Count != 0)
                     {
-                        if (player.quest[j].questName == value)
+                        for (int j = 0; j < player.quest.Count; j++)
                         {
-                            Console.WriteLine("{0}. {1}", i + 1, quests[i].questName);
+                            if (player.quest[j].questName != value)
+                            {
+                                Console.WriteLine("{0}. {1}", i + 1, quests[i].questName);
+                            }
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("{0}. {1}", i + 1, quests[i].questName);
                     }
                 }
                 Console.WriteLine("");
                 Console.WriteLine("0. 나가기");
                 result = util.AskAnswer();
-                if (result != 0 && result < quests.Count)
+                if (result != 0 && result <= quests.Count)
                 {
                     ShowQuestDetail(quests[result - 1], player);
                 }
