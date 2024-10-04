@@ -87,6 +87,11 @@ namespace Team21Project
                     Console.WriteLine($"{items.Name}(을)를 해체했습니다.");
                     Console.ResetColor();
                 }
+                else if (items.ItemType == ItemType.Potion)
+                {
+                    items.Used(50, character);
+                    character.Inventory.Items.Remove(items);
+                }
             }
             else
             {
