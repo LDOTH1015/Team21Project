@@ -259,7 +259,14 @@
                 {
                     if (skill)
                     {
-                        monsters[result-1].TakeDamage(player.SkillDamage());
+                        int damage = player.SkillDamage();
+                        if (damage != 0)
+                        {
+                            monsters[result - 1].TakeDamage(damage);
+                        } else
+                        {
+                            monsters[result - 1].TakeDamage(player.AttackDamage());
+                        }
                     }
                     else
                     {
