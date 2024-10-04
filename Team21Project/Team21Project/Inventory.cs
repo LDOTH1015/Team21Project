@@ -87,10 +87,16 @@ namespace Team21Project
                     Console.WriteLine($"{items.Name}(을)를 해체했습니다.");
                     Console.ResetColor();
                 }
-                else if (items.ItemType == ItemType.Potion)
+                else if (items.ItemType == ItemType.Potion && character.Current_Health < 100)
                 {
                     items.Used(50, character);
                     character.Inventory.Items.Remove(items);
+                }
+                else if (items.ItemType == ItemType.Potion && character.Current_Health >= 100)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"{character.Name}의 체력이 100입니다.");
+                    Console.ResetColor();
                 }
             }
             else

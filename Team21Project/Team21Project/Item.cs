@@ -40,8 +40,10 @@
 
         public void Used(int Heal, IPlayerCharacter character)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{character.Name}의 체력이 회복 되었습니다. " +
                 $"{character.Current_Health} -> {(character.Current_Health + Heal >= 100 ? $"100" : character.Current_Health + Heal)}");
+            Console.ResetColor();
             character.Current_Health += Heal;
             if (character.Current_Health > 100)
             {
